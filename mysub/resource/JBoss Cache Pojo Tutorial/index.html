@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">PojoCache 指南</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/></head><body><div class="article" lang="zh-CN"><div class="titlepage"><div><div><h1 class="title"><a id="d0e1"/>PojoCache 指南</h1></div><div><div class="author"><h3 class="author"><span class="firstname">Ben</span> <span class="surname">Wang</span></h3><code class="email">&lt;<a href="mailto:ben.wang@jboss.com">ben.wang@jboss.com</a>&gt;</code></div></div><div><div class="author"><h3 class="author"><span class="firstname">Galder</span> <span class="surname">Zamarreño</span></h3><code class="email">&lt;<a href="mailto:galder.zamarreno@jboss.com">galder.zamarreno@jboss.com</a>&gt;</code></div></div><div><p class="releaseinfo">版本 2.0.0</p></div><div><p class="pubdate">2007 六月</p></div></div><hr/></div><div class="toc"><dl><dt><span class="section"><a href="#d0e29">1. 简介</a></span></dt><dt><span class="section"><a href="#d0e45">2. 可以学到的知识</a></span></dt><dt><span class="section"><a href="#d0e61">3. 配置</a></span></dt><dt><span class="section"><a href="#d0e105">4. 脚本</a></span></dt><dt><span class="section"><a href="#d0e113">5. POJO 例子</a></span></dt><dt><span class="section"><a href="#d0e145">6. 运行 Demo <a href="#gui"><em class="glossterm">GUI</em></a></a></span></dt><dt><span class="section"><a href="#d0e182">7. 指南</a></span></dt><dd><dl><dt><span class="section"><a href="#d0e189">7.1. PojoCache API，POJO 操作和复制</a></span></dt><dt><span class="section"><a href="#d0e241">7.2. 集合</a></span></dt></dl></dd><dt><span class="section"><a href="#d0e277">8. 事务</a></span></dt><dt><span class="glossary"><a href="#d0e282">术语表</a></span></dt></dl></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e29"/>1. 简介</h2></div></div></div><p>PojoCache 是一个缓存系统，
+      它支持<a href="#pojo"><em class="glossterm">POJO</em></a>的内存管理、事务处理和复制。
+      允许用户透明地操作 POJO，而不用主动管理复制或持久存储等方面的问题。
+      这个指南的重点放在 PojoCache <a href="#api"><em class="glossterm">API</em></a>的使用上。
+      </p><p>想要了解配置、用法和 API 的详细情况，
+      请参考
+        <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://labs.jboss.org/portal/jbosscache/docs/index.html">用户手册</a>。
+      </p></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e45"/>2. 可以学到的知识</h2></div></div></div><div class="itemizedlist"><ul><li><p>PojoCache 创建和修改</p></li><li><p>POJO 字段复制</p></li><li><p>在 PojoCache 中使用集合</p></li><li><p>事务</p></li></ul></div></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e61"/>3. 配置</h2></div></div></div><p>首先，
+      从<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://labs.jboss.org/portal/jbosscache/download/index.html">
+          下载页面</a>
+          下载 JBoss Cache 2.x 发布程序。
+         你可以选择<code class="literal">JBossCache-pojo-2.X.Y.zip</code>发布程序。
+         解压后，你将得到一个包含发布程序的目录，例如
+         <code class="literal">JBossCache-pojo-2.X.Y</code>。
+         为了方便阅读这个指南，我将用<code class="literal">PojoCache</code>代替这个目录名称。
+      </p><p>配置文件位于<code class="literal">PojoCache/etc</code>目录下。
+      通过编辑不同的配置文件，你可以修改缓存的行为。
+      </p><div class="itemizedlist"><ul><li><p>
+               <code class="literal">log4j.xml</code>
+               ，记录输出。你可以打开日志功能，指定日志记录水平，或者修改日志文件的名称和输出路径。
+            </p></li><li><p>
+               <code class="literal">META-INF/replSync-service.xml</code>
+               ，本指南将要用到的这个缓存配置文件。
+            </p></li><li><p>
+               <code class="literal">pojocache-aop.xml</code>
+               ，PojoCache 的配置文件。它除了包含其他配置信息外，
+               还有如何对 POJO 进行面向方面切入的注释。
+               想了解更多信息，请参考 PojoCache
+               <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://labs.jboss.org/portal/jbosscache/docs/index.html">用户手册</a>
+               。
+            </p></li></ul></div></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e105"/>4. 脚本</h2></div></div></div><p>这个指南需要的唯一脚本是
+         <code class="literal">PojoCache/build.xml</code>
+         ，是一个ant脚本。
+      </p></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e113"/>5. POJO 例子</h2></div></div></div><p>PojoCache <a href="#demo"><em class="glossterm">demo</em></a> 的例子 POJO 类是：
+         <code class="literal">org.jboss.cache.pojo.test.Person</code>
+         和
+         <code class="literal">org.jboss.cache.pojo.test.Address</code>
+         。他们都在<code class="literal">tests/functional</code>目录下。
+         这个 demo 将演示，一旦一个 POJO 对象添加到缓存里面，
+         缓存将拦截 POJO 普通的 get/set 方法。
+      </p><p>下面是
+         <code class="literal">Person</code>
+         和
+         <code class="literal">Address</code>
+         类定义的代码片段，
+         其中包含了 <code class="literal">Replicable</code> 注释。
+      </p><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">@org</span><span class="java_separator">.</span><span class="java_plain">jboss</span><span class="java_separator">.</span><span class="java_plain">cache</span><span class="java_separator">.</span><span class="java_plain">pojo</span><span class="java_separator">.</span><span class="java_plain">annotation</span><span class="java_separator">.</span><span class="java_type">Replicable</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">Person</span>
+<!--  --><br/><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">String</span><span class="java_plain">&nbsp;getName</span><span class="java_separator">()</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">return</span><span class="java_plain">&nbsp;name</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;setName</span><span class="java_separator">(</span><span class="java_type">String</span><span class="java_plain">&nbsp;name</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">this</span><span class="java_separator">.</span><span class="java_plain">name</span><span class="java_operator">=</span><span class="java_plain">name</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">List</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;getLanguages</span><span class="java_separator">()</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">return</span><span class="java_plain">&nbsp;languages</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;setLanguages</span><span class="java_separator">(</span><span class="java_type">List</span><span class="java_operator">&lt;</span><span class="java_type">String</span><span class="java_operator">&gt;</span><span class="java_plain">&nbsp;languages</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">this</span><span class="java_separator">.</span><span class="java_plain">languages&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;languages</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">Address</span><span class="java_plain">&nbsp;getAddress</span><span class="java_separator">()</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">return</span><span class="java_plain">&nbsp;address</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;setAddress</span><span class="java_separator">(</span><span class="java_type">Address</span><span class="java_plain">&nbsp;address</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">this</span><span class="java_separator">.</span><span class="java_plain">address&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;address</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">@org</span><span class="java_separator">.</span><span class="java_plain">jboss</span><span class="java_separator">.</span><span class="java_plain">cache</span><span class="java_separator">.</span><span class="java_plain">pojo</span><span class="java_separator">.</span><span class="java_plain">annotation</span><span class="java_separator">.</span><span class="java_type">Replicable</span>
+<!--  --><br/><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_keyword">class</span><span class="java_plain">&nbsp;</span><span class="java_type">Address</span>
+<!--  --><br/><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">String</span><span class="java_plain">&nbsp;getStreet</span><span class="java_separator">()</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">return</span><span class="java_plain">&nbsp;street</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">public</span><span class="java_plain">&nbsp;</span><span class="java_type">void</span><span class="java_plain">&nbsp;setStreet</span><span class="java_separator">(</span><span class="java_type">String</span><span class="java_plain">&nbsp;street</span><span class="java_separator">)</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">{</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="java_keyword">this</span><span class="java_separator">.</span><span class="java_plain">street</span><span class="java_operator">=</span><span class="java_plain">street</span><span class="java_separator">;</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_separator">...</span>
+<!--  --><br/><span class="java_separator">}</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e145"/>6. 运行 Demo <a href="#gui"><em class="glossterm">GUI</em></a></h2></div></div></div><p>
+         通过调用 ant 脚本（经过驱动程序）目标，例如<code class="literal">run.demo</code>，
+         来运行 demo 。
+      </p><p>
+         <code class="literal">ant run.demo</code>
+      </p><p>
+         这将出现一个 GUI 窗口，在顶部方框显示缓存的树形视图，
+         在底部方框内显示 <a href="#jvm"><em class="glossterm">JVM</em></a>
+         的 <a href="#beanshell"><em class="glossterm">BeanShell</em></a> 视图。         
+      </p><p>
+          BeanShell 视图显示下列变量：
+         </p><div class="itemizedlist"><ul><li><code class="literal">cache</code>
+               -  GUI   实例引用的 PojoCache 接口。
+            </li><li><code class="literal">transactionManager</code>
+               - 引用的注册过的事务管理器。
+            </li></ul></div><p>
+          BeanShell 窗体和上面 GUI 树形视图指向的是同一个缓存实例。
+      </p><p>
+         为了使 demo 演示出复制的效果，
+         需要另外启动一个命令行窗体，
+         并象上面一样再次运行ant脚本目标。
+         这样，在两个不同的 GUI 程序里面有了两个缓存实例，
+         这两个缓存实例互相复制状态。
+      </p></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e182"/>7. 指南</h2></div></div></div>
+       需要注意的是，在下面每个指南里面，推荐你关闭并重新启动一个 GUI demo，
+       这样能保证每次清理缓存。
+       要想通过 GUI 来检查 POJO 属性的改变，请参考 PojoCache
+      <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://labs.jboss.org/portal/jbosscache/docs/index.html">用户手册
+      </a>
+      ，通过这些文档能够明白 POJO 在缓存内部如何映射。
+
+      <div class="section" lang="zh-CN"><div class="titlepage"><div><div><h3 class="title"><a id="d0e189"/>7.1. PojoCache API，POJO 操作和复制</h3></div></div></div><p>
+            在这个指南中，启动两个 demo GUI 实例，我们将：
+            </p><div class="itemizedlist"><ul><li>将 POJO 添加到缓存中，观察他们如何被复制。</li><li>将 POJO 添加到缓存中，操作 POJO 并观察个别修改如何被复制。</li><li>将 POJO 从缓存中取回，操作他们并观察修改如何被复制。</li><li>创建一个共享某个 POJO 的 POJO，观察这种修改的结果。</li><li>将 POJO 从缓存中脱离出来。</li><li>脱离后，操作 POJO，观察缓存中的值如何没有改变。</li></ul></div><p>
+            
+         </p><div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="orderedlist"><ol><li>在第一个 GUI 实例中，创建一个 POJO，例如创建一个带有 Address的 Person：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Person</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setName</span><span class="java_separator">(</span><span class="java_literal">&quot;Joe&nbsp;Black&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setAge</span><span class="java_separator">(</span><span class="java_literal">31</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;addr&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Address</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;addr</span><span class="java_separator">.</span><span class="java_plain">setCity</span><span class="java_separator">(</span><span class="java_literal">&quot;Sunnyvale&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;addr</span><span class="java_separator">.</span><span class="java_plain">setStreet</span><span class="java_separator">(</span><span class="java_literal">&quot;123&nbsp;Albert&nbsp;Ave&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;addr</span><span class="java_separator">.</span><span class="java_plain">setZip</span><span class="java_separator">(</span><span class="java_literal">94086</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setAddress</span><span class="java_separator">(</span><span class="java_plain">addr</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>将 POJO 添加到缓存：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">attach</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/joe&quot;</span><span class="java_separator">,</span><span class="java_plain">&nbsp;joe</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>修改 POJO 的属性，并观察个别修改如何被传播到第二个缓存 GUI：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setAge</span><span class="java_separator">(</span><span class="java_literal">41</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>在第二个 GUI 实例中，得到缓存中 Person 的一个引用，
+            用这个已经存在 Person 的 Address 创建第二个 Person：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">find</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/joe&quot;</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;mary&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Person</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;mary</span><span class="java_separator">.</span><span class="java_plain">setName</span><span class="java_separator">(</span><span class="java_literal">&quot;Mary&nbsp;White&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;mary</span><span class="java_separator">.</span><span class="java_plain">setAge</span><span class="java_separator">(</span><span class="java_literal">30</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;mary</span><span class="java_separator">.</span><span class="java_plain">setAddress</span><span class="java_separator">(</span><span class="java_plain">joe</span><span class="java_separator">.</span><span class="java_plain">getAddress</span><span class="java_separator">());</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>将新 POJO 添加到缓存：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">attach</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/mary&quot;</span><span class="java_separator">,</span><span class="java_plain">&nbsp;mary</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>现在，修改二个 Person 中任意一个的 Address 信息，
+            然后观察修改如何应用到全部两个 POJO 上，还有修改如何传播到其他缓存中，
+            并在第一个 GUI 实例上能看到：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;mary</span><span class="java_separator">.</span><span class="java_plain">getAddress</span><span class="java_separator">().</span><span class="java_plain">setZip</span><span class="java_separator">(</span><span class="java_literal">95000</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>还是在第二个 GUI 实例中，将 POJOs 从缓存中脱离出来，
+            观察 POJO 如何已经看不见：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">detach</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/joe&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">detach</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/mary&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>最后，在任一个 GUI 实例中，修改 POJO 的属性，
+            观察缓存如何不受这些修改的影响：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setName</span><span class="java_separator">(</span><span class="java_literal">&quot;Joe&nbsp;White&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li></ol></div></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h3 class="title"><a id="d0e241"/>7.2. 集合</h3></div></div></div><p>
+            在这个指南中，启动两个 demo GUI 实例，我们将要：
+            </p><div class="itemizedlist"><ul><li>将 POJO 添加到缓存中，查看它被复制。</li><li>在这个 POJO 中设定一个集合属性。</li><li>操作这个集合属性，查看 GUI 中可视变化以及被复制。</li><li>将 POJO 从缓存中脱离。</li></ul></div><p>
+
+         </p><div xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="orderedlist"><ol><li>在第一个 GUI 实例中，创建一个带有集合属性的 POJO ：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">Person</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setName</span><span class="java_separator">(</span><span class="java_literal">&quot;Joe&nbsp;Black&quot;</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;lang&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">ArrayList</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;lang</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;Spanish&quot;</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">setLanguages</span><span class="java_separator">(</span><span class="java_plain">lang</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>将这个 POJO 添加到缓存：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">attach</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/joe&quot;</span><span class="java_separator">,</span><span class="java_plain">&nbsp;joe</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>得到这个集合的代理引用，并在它上面添加一个新元素：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;proxyLang&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;joe</span><span class="java_separator">.</span><span class="java_plain">getLanguages</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;proxyLang</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;English&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>将这个 POJO 从缓存中脱离：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">detach</span><span class="java_separator">(</span><span class="java_literal">&quot;pojo/joe&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li><li>使用集合的代理引用，并添加另外一个元素，
+            然后查看这种操作如何没有被添加到缓存中：
+               <pre xmlns="" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;proxyLang</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;French&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></li></ol></div></div></div><div class="section" lang="zh-CN"><div class="titlepage"><div><div><h2 class="title"><a id="d0e277"/>8. 事务</h2></div></div></div><p>
+         在这个指南中，启动两个 demo GUI 实例。
+         重复上一个指南中的练习，
+         只是当添加/脱离节点或修改 POJO 前，启动事务。
+         这将描述出，复制如何仅仅发生在事务的边界。
+         同时也尝试一下回滚几个事务， 看一下在这些情景中复制为什么没有发生。
+      </p></div><div class="glossary"><div class="titlepage"><div><div><h2 class="title"><a id="d0e282"/>术语表</h2></div></div></div><div class="glossdiv"><h3 class="title">A</h3><dl><dt><a id="api"/>API</dt><dd><p>Application Programming Interface，应用编程接口。</p></dd></dl></div><div class="glossdiv"><h3 class="title">B</h3><dl><dt><a id="beanshell"/>BeanShell</dt><dd><p>一个轻量级的Java脚本工具。</p></dd></dl></div><div class="glossdiv"><h3 class="title">D</h3><dl><dt><a id="demo"/>demo</dt><dd><p>演示或演示程序。</p></dd></dl></div><div class="glossdiv"><h3 class="title">G</h3><dl><dt><a id="gui"/>GUI</dt><dd><p>Graphical User Interface，图形用户界面。</p></dd></dl></div><div class="glossdiv"><h3 class="title">J</h3><dl><dt><a id="jvm"/>JVM</dt><dd><p>Java Virtual Machines，Java虚拟机。</p></dd></dl></div><div class="glossdiv"><h3 class="title">P</h3><dl><dt><a id="pojo"/>POJO</dt><dd><p>Plain Old Java Object，简单Java对象。</p></dd></dl></div></div></div></body></html>

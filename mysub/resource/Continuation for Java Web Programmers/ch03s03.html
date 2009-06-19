@@ -1,0 +1,86 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>3.&nbsp;Multi&#20363;&#23376;&#19982;&#23545;&#35937;&#27169;&#22411;</title><link rel="stylesheet" href="html.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="index.html" title="Java&#32593;&#32476;&#31243;&#24207;&#21592;&#30475;Continuation"><link rel="up" href="ch03.html" title="Chapter&nbsp;3.&nbsp;Seaside&#26694;&#26550;"><link rel="prev" href="ch03s02.html" title="2.&nbsp;Counter&#20363;&#23376;&#19982;&#22238;&#36864;&#38190;&#22788;&#29702;"><link rel="next" href="ch03s04.html" title="4.&nbsp;&#37096;&#20214;&#20043;&#38388;&#30340;call&#21644;answer"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3.&nbsp;Multi&#20363;&#23376;&#19982;&#23545;&#35937;&#27169;&#22411;</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a>&nbsp;</td><th width="60%" align="center">Chapter&nbsp;3.&nbsp;Seaside&#26694;&#26550;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch03s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e301"></a>3.&nbsp;Multi&#20363;&#23376;&#19982;&#23545;&#35937;&#27169;&#22411;</h2></div></div></div><p>&#19979;&#38754;&#25105;&#20204;&#26469;&#30475;&#21478;&#19968;&#20010;&#20363;&#23376;&#65292;multi&#65292;<code class="uri">http://localhost:9090/seaside/multi</code>&#12290;&#36825;&#20010;&#20363;&#23376;&#20063;&#24456;&#31616;&#21333;&#65292;&#23427;&#22312;&#19968;&#20010;&#39029;&#38754;&#19978;&#26174;&#31034;5&#20010;&#29420;&#31435;&#30340;counter&#12290;</p><div class="screenshot"><div class="mediaobject"><img src="resources/multi.png"></div></div><p>&#25105;&#20204;&#21333;&#20987;Toggle Halos&#38142;&#25509;&#65292;&#30475;&#30475;&#23427;&#30340;&#32467;&#26500;&#26159;&#24590;&#26679;&#30340;&#12290;</p><div class="screenshot"><div class="mediaobject"><img src="resources/multi-halos.png"></div></div><p>&#25105;&#20204;&#30475;&#21040;&#65292;&#27599;&#19968;&#20010;counter&#23601;&#26159;&#19968;&#20010;WACounter&#23545;&#35937;&#65292;&#32780;&#25972;&#20010;&#39029;&#38754;&#21017;&#26159;&#19968;&#20010;WAMultiCounter&#23545;&#35937;&#12290;&#27880;&#24847;&#21040;&#22312;Seaside&#20013;&#65292;&#25105;&#20204;&#20889;&#30340;&#27599;&#20010;&#39029;&#38754;&#37117;&#26159;WAComponent&#30340;&#23376;&#31867;&#65292;&#21363;&#37117;&#26159;&#19968;&#20010;component&#12290;&#32780;&#20219;&#24847;&#19968;&#20010;component&#21487;&#20197;&#21253;&#21547;&#20219;&#24847;&#19968;&#20010;component&#65292;&#25105;&#20204;&#20316;&#20026;&#31243;&#24207;&#21592;&#19981;&#29992;&#20570;&#20219;&#20309;&#20107;&#24773;&#12290;&#24456;&#37239;&#21543;&#65311;</p><p>&#25105;&#20204;&#26469;&#30475;&#30475;WAMultiCounter&#38656;&#35201;&#20570;&#20123;&#20160;&#20040;&#25165;&#33021;&#21253;&#21547;&#20854;&#20182;&#30340;component&#12290;</p><div class="screenshot"><div class="mediaobject"><img src="resources/multi-browser.png"></div></div><p>&#21644;WACounter&#19968;&#26679;&#65292;WAMultiCounter&#20063;&#26159;WAComponent&#30340;&#23376;&#31867;&#12290;&#23427;&#26377;&#19968;&#20010;instance variable&#65306;counters&#65292;&#20197;&#21450;&#19977;&#20010;&#20989;&#25968;&#65292;children&#65292;initialize&#21644;renderContentOn&#12290;&#36825;&#20123;&#20989;&#25968;&#30340;&#20195;&#30721;&#22914;&#19979;&#65306;</p><pre class="programlisting">initialize
+    counters _ (1 to: 5) collect: [:i | WACounter new]
+
+children
+    ^ counters
+
+renderContentOn: html
+    counters 
+        do: [:ea | html render: ea]
+        separatedBy: [html horizontalRule]</pre><p>&#30456;&#24212;&#30340;Java&#39118;&#26684;&#20195;&#30721;&#20026;&#65288;&#20197;&#19979;&#20195;&#30721;&#19981;&#31526;&#21512;&#20219;&#20309;&#35821;&#35328;&#65289;&#65306;</p><pre class="programlisting">void initialize() {
+    counters = new Vector();
+    for (int i = 1; i &lt;= 5; i++) {
+        counters.append(new WACounter());
+    }
+}
+
+Object children() {
+    return counters;
+}
+
+void renderContentOn(Object html) {
+    foreach (ea : counters) {
+        html.render(ea);
+
+        if (ea != counters.last()) {
+            html.horizontalRule();
+        }
+    }
+}</pre><p>&#25105;&#20204;&#30475;&#21040;&#65292;&#38500;&#20102;children&#20043;&#22806;WAMultiCounter&#30340;&#20004;&#20010;&#20989;&#25968;&#29992;&#36884;&#21644;WACounter&#30340;&#19968;&#27169;&#19968;&#26679;&#12290;&#25152;&#20197;&#25105;&#20204;&#25152;&#38656;&#20570;&#30340;&#20840;&#37096;&#24037;&#20316;&#23601;&#26159;&#23454;&#29616;children&#20989;&#25968;&#65292;&#35753;&#23427;&#36820;&#22238;&#23545;&#35937;&#26412;&#36523;&#30340;&#25152;&#26377;&#23376;&#37096;&#20214;&#65292;&#25105;&#20204;&#23601;&#33021;&#25317;&#26377;&#19968;&#20010;&#24378;&#22823;&#30340;&#37096;&#20214;&#27169;&#22411;&#26550;&#26500;&#65281;</p><p>&#22312;&#19968;&#20010;&#39029;&#38754;&#19978;&#26174;&#31034;&#20116;&#20010;counter&#21487;&#33021;&#27809;&#26377;&#20160;&#20040;&#23454;&#38469;&#29992;&#36884;&#65292;&#25152;&#20197;&#22312;&#26412;&#31456;&#32467;&#26463;&#21069;&#65292;&#25105;&#20204;&#31616;&#35201;&#22320;&#30475;&#30475;&#19968;&#20010;&#27604;&#36739;&#30495;&#23454;&#30340;&#20363;&#23376;&#12290;&#27983;&#35272;<code class="uri">http://localhost:9090/seaside/alltests</code>&#65292;&#24744;&#20250;&#30475;&#21040;&#19979;&#38754;&#30340;&#20363;&#23376;&#65306;</p><div class="screenshot"><div class="mediaobject"><img src="resources/alltests.png"></div></div><p>&#36825;&#20010;&#39029;&#38754;&#26159;&#30001;&#19968;&#32452;&#21508;&#33258;&#29420;&#31435;&#30340;&#37096;&#20214;&#32452;&#25104;&#30340;&#65292;&#22914;Input&#65292;Html&#65292;&#31561;&#31561;&#65292;&#27599;&#20010;&#37096;&#20214;&#26159;&#19968;&#20010;Seaside&#30340;&#23567;&#20363;&#23376;&#12290;&#24744;&#21487;&#33021;&#26089;&#23601;&#35273;&#24471;&#36825;&#31181;&#39029;&#38754;&#24456;&#26222;&#36890;&#20102;&#65292;&#20294;&#26159;Seaside&#20889;&#36825;&#20010;&#39029;&#38754;&#30340;&#26041;&#27861;&#32477;&#23545;&#19981;&#26222;&#36890;&#12290;WAAllTests&#31867;&#21482;&#26377;&#19968;&#27573;&#37325;&#35201;&#30340;&#20195;&#30721;&#65306;</p><pre class="programlisting">initialize
+    self contents:
+        (WASimpleNavigation new
+        add: WAInputTest new label: 'Input';
+        add: WAHtmlTest new label: 'Html';
+        add: WAEncodingTest new label: 'Encoding';
+        add: WAErrorTest new label: 'Error';
+        add: WAExceptionTest new label: 'Exception';
+        add: WAClosureTest new label: 'Closure';
+        add: WATransactionTest new 
+            label: 'Transaction';
+        add: WAUploadTest new label: 'Upload';
+        add: (WAParentTest new parent: self)
+            label: 'Parent';
+        add: WAPathTest new label: 'Path';
+        add: WATaskTest new label: 'Task';
+        add: WACookieTest new label: 'Cookies';
+        add: WACallbackTest new label: 'Callbacks';
+        add: WACanvasTest new label: 'Canvas';
+        add: WALiveRequestTest new label: 'Live';
+        add: WAImageTest new label: 'Images';
+        add: WAHomeTest new label: 'Home';
+        add: WACacheTest new label: 'Cache';
+        add: WADefaultFormTest new 
+            label: 'Default Form';
+        add: WALinkSubmitTest new 
+            label: 'Submit';
+        yourself)</pre><p>&#29992;&#31867;&#20284;Java&#30340;&#35821;&#27861;&#20889;&#20986;&#26469;&#26159;&#65288;&#20197;&#19979;&#20195;&#30721;&#19981;&#31526;&#21512;&#20219;&#20309;&#35821;&#35328;&#65289;&#65306;</p><pre class="programlisting">public void initialize() {
+    Object c = new WASimpleNavigation();
+    c.addWithLabel(new WAInputTest(), &#8220;Input&#8221;);
+    c.addWithLabel(new WAHtmlTest(), &#8220;Html&#8221;);
+    c.addWithLabel(new WAEncodingTest(), &#8220;Encoding&#8221;);
+    c.addWithLabel(new WAErrorTest(), &#8220;Error&#8221;);
+    c.addWithLabel(new WAExceptionTest(), &#8220;Exception&#8221;);
+    c.addWithLabel(new WAClosureTest(), &#8220;Closure&#8221;);
+    c.addWithLabel(new WATransactionTest(), 
+        &#8220;Transaction&#8221;);
+    c.addWithLabel(new WAUploadTest(), &#8220;Upload&#8221;);
+    Object p = new WAParentTest();
+    p.setParent(this);
+    c.addWithLabel(p, &#8220;Parent&#8221;);
+    c.addWithLabel(new WAPathTest(), &#8220;Path&#8221;);
+    c.addWithLabel(new WATaskTest(), &#8220;Task&#8221;);
+    c.addWithLabel(new WACookieTest(), &#8220;Cookies&#8221;);
+    c.addWithLabel(new WACallbackTest(), &#8220;Callbacks&#8221;);
+    c.addWithLabel(new WACanvasTest(), &#8220;Canvas&#8221;);
+    c.addWithLabel(new WALiveRequestTest(), &#8220;Live&#8221;);
+    c.addWithLabel(new WAImageTest(), &#8220;Images&#8221;);
+    c.addWithLabel(new WAHomeTest(), &#8220;Home&#8221;);
+    c.addWithLabel(new WACacheTest(), &#8220;Cache&#8221;);
+    c.addWithLabel(new WADefaultFormTest(), 
+        &#8220;Default Form&#8221;);
+    c.addWithLabel(new WALinkSubmitTest(), &#8220;Submit&#8221;);
+
+    this.setContents(c);
+}</pre><p>&#36825;&#20960;&#20046;&#21644;&#29992;Swing&#20889;&#26412;&#22320;&#31243;&#24207;&#19968;&#26679;&#31616;&#27905;&#20102;&#12290;Seaside&#19981;&#24871;&#26159;&#30495;&#27491;&#30340;&#38754;&#21521;&#23545;&#35937;&#30340;&#32593;&#32476;&#26694;&#26550;&#12290;</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch03s02.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch03.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch03s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">2.&nbsp;Counter&#20363;&#23376;&#19982;&#22238;&#36864;&#38190;&#22788;&#29702;&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;4.&nbsp;&#37096;&#20214;&#20043;&#38388;&#30340;call&#21644;answer</td></tr></table></div></body></html>

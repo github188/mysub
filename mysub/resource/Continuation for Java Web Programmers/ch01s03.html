@@ -1,0 +1,31 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>3.&nbsp;CPS&#19982;goto</title><link rel="stylesheet" href="html.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.69.1"><link rel="start" href="index.html" title="Java&#32593;&#32476;&#31243;&#24207;&#21592;&#30475;Continuation"><link rel="up" href="ch01.html" title="Chapter&nbsp;1.&nbsp;CPS&#19982;&#32593;&#32476;&#31243;&#24207;&#27969;&#31243;&#25511;&#21046;"><link rel="prev" href="ch01s02.html" title="2.&nbsp;CPS&#29468;&#25968;&#23383;&#28216;&#25103;"><link rel="next" href="ch01s04.html" title="4.&nbsp;CPS&#19982;&#32593;&#32476;&#27969;&#31243;&#25511;&#21046;"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">3.&nbsp;CPS&#19982;goto</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a>&nbsp;</td><th width="60%" align="center">Chapter&nbsp;1.&nbsp;CPS&#19982;&#32593;&#32476;&#31243;&#24207;&#27969;&#31243;&#25511;&#21046;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch01s04.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e96"></a>3.&nbsp;CPS&#19982;goto</h2></div></div></div><p>&#22914;&#26524;&#24744;&#35273;&#24471;&#19978;&#38754;&#30340;&#36825;&#27573;&#20195;&#30721;&#38590;&#20197;&#29702;&#35299;&#65292;&#37027;&#20040;&#25105;&#20204;&#26469;&#30475;&#30475;&#36825;&#20010;&#28216;&#25103;&#30340;&#31532;&#19977;&#31181;&#20889;&#27861;&#65292;&#20063;&#35768;&#24744;&#23601;&#20250;&#24653;&#28982;&#22823;&#24735;&#12290;&#19979;&#38754;&#36825;&#27573;&#20195;&#30721;&#20351;&#29992;label&#21644;goto&#20889;&#25104;&#30340;&#12290;</p><pre class="programlisting">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void main() {
+    int ans;
+    int guess;
+    ans = random() % 100 + 1;
+    goto prompt;
+
+    prompt:
+    printf("Guess a number [1, 100]: ");
+    goto guess;
+
+    guess:
+    scanf("%d", &amp;guess);
+    if (guess &lt; ans) {
+        printf("Number too small.\n");
+        goto prompt;
+    } else if (guess &gt; ans) {
+        printf("Number too big.\n");
+        goto prompt;
+    } else {
+        printf("Congratulations!");
+        goto finishgame;
+    }
+
+    finishgame:
+    /* do nothing */
+}</pre><p>&#25226;&#36825;&#27573;&#29992;goto&#20889;&#25104;&#30340;&#20195;&#30721;&#19982;&#19978;&#38754;&#30340;CPS&#27604;&#36739;&#19968;&#19979;&#65292;&#24744;&#20250;&#21457;&#29616;&#20004;&#32773;&#24778;&#20154;&#22320;&#30456;&#20284;&#65292;&#20960;&#20046;&#26159;&#19968;&#19968;&#23545;&#24212;&#30340;&#20851;&#31995;&#12290;CPS&#27169;&#24335;&#20013;&#30340;&#27599;&#20010;&#20989;&#25968;&#20854;&#23454;&#23601;&#26159;&#19968;&#20010;label&#65292;&#20989;&#25968;print&#20107;&#23454;&#19978;&#23601;&#26159;printf&#21518;&#38754;&#21152;&#19968;&#20010;goto&#65292;&#32780;&#25105;&#20204;&#22312;&#19978;&#38754;&#30340;&#20363;&#23376;&#37324;&#23454;&#38469;&#20570;&#30340;&#65292;&#23601;&#26159;&#25226;while&#32467;&#26500;&#29992;goto&#37325;&#26032;&#20889;&#20102;&#19968;&#36941;&#65281;</p><p>&#38656;&#35201;&#27880;&#24847;&#30340;&#26159;&#65306;&#19968;&#33324;&#24773;&#20917;&#19979;CPS&#27604;goto&#30340;&#21151;&#33021;&#26356;&#24378;&#22823;&#65292;&#21482;&#22312;&#25105;&#20204;&#30340;CPS&#20989;&#25968;print&#25509;&#21463;&#30340;continuation&#30340;&#25968;&#25454;&#31867;&#22411;&#20026; void (*continuation)(void)&#26102;&#25105;&#20204;&#25165;&#33021;&#25226;CPS&#31616;&#21333;&#22320;&#36716;&#25442;&#20026;goto&#12290;&#27491;&#22240;&#20026;&#27492;&#65292;&#26377;&#20154;&#23558;continuation&#31216;&#20026;&#24102;&#21442;&#25968;&#30340;goto&#12290;</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch01s02.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="ch01.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch01s04.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">2.&nbsp;CPS&#29468;&#25968;&#23383;&#28216;&#25103;&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="index.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;4.&nbsp;CPS&#19982;&#32593;&#32476;&#27969;&#31243;&#25511;&#21046;</td></tr></table></div></body></html>

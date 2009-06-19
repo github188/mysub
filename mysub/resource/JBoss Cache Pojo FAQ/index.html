@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory">有关 POJO Cache 的常见问题</title><link rel="stylesheet" href="css/jbossorg.css" type="text/css"/><meta xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" name="generator" content="DocBook XSL Stylesheets V1.72.0"/></head><body><div class="article" lang="zh-CN"><div class="titlepage"><div><div><h1 class="title"><a id="d0e1"/>有关 POJO Cache 的常见问题</h1></div><div><div class="author"><h3 class="author"><span class="firstname">Ben</span> <span class="surname">Wang</span></h3><code class="email">&lt;<a href="mailto:ben.wang@jboss.com">ben.wang@jboss.com</a>&gt;</code></div></div><div><div class="author"><h3 class="author"><span class="firstname">Scott</span> <span class="surname">Marlow</span></h3><code class="email">&lt;<a href="mailto:smarlow@novell.com">smarlow@novell.com</a>&gt;</code></div></div><div><div class="author"><h3 class="author"><span class="firstname">Jason</span> <span class="surname">Greene</span></h3><code class="email">&lt;<a href="mailto:jason.greene@jboss.com">jason.greene@jboss.com</a>&gt;</code></div></div><div><p class="releaseinfo">版本 2.1.0.GA</p></div><div><p class="pubdate">2008 三月</p></div></div><hr/></div><div class="toc"><dl><dt><span class="glossary"><a href="#d0e470">术语表</a></span></dt></dl></div><p>这些是有关 POJO Cache 的常见问题。</p><div class="qandaset"><h2 class="title"><a id="d0e39"/>一般信息</h2><dl><dt>问： <a href="#d0e42">POJO Cache是什么？</a></dt><dt>问： <a href="#d0e60">Core Cache 和 POJO Cache 两者之间的关系是怎样的？</a></dt><dt>问： <a href="#d0e73">Core Cache 和 POJO Cache 两者之间的区别是什么？</a></dt><dt>问： <a href="#d0e83">那么 POJO Cache 如何工作？</a></dt><dt>问： <a href="#d0e90">1.x 和 2.x 版本之间做了那些修改？</a></dt><dt>问： <a href="#d0e134">如何使用 POJO Cache？</a></dt><dt>问： <a href="#d0e151">运行 POJO Cache 2.x 需要什么版本的 JDK？</a></dt><dt>问： <a href="#d0e158">能够让 POJO Cache 以一种独立模式运行吗？</a></dt><dt>问： <a href="#d0e165">运行 POJO Cache 2.x 的 JBoss AS 推荐版本是什么?</a></dt><dt>问： <a href="#d0e172">我能在 POJO Cache 中使用预先编译的对象吗？
+            这样，我就不必提供 AOP 描述符了。
+            </a></dt><dt>问： <a href="#d0e188">在 POJO Cache 2.x 版本中我还需要 annoc吗？</a></dt><dt>问： <a href="#d0e198">在多模块目录下我怎么使用 aopc？</a></dt><dt>问： <a href="#d0e205">POJO Cache 有没有提供一个监听器/事件模型，
+            以便捕捉变化？</a></dt><dt>问： <a href="#d0e212">在
+               pojocaches-aop.xml
+               配置文件中有什么？
+            </a></dt><dt>问： <a href="#d0e222">
+               jboss-aop.xml 和
+               pojocache-aop.xml之间的区别是什么？
+            </a></dt><dt>问： <a href="#d0e244">我能够使用注释，而不用编辑 AOP XML 描述符吗？</a></dt><dt>问： <a href="#d0e251">如果用自定义的 AOP 描述符覆盖提供的注释会不会有问题？</a></dt><dt>问： <a href="#d0e258">字段层的注释
+               @org.jboss.cache.pojo.annotation.Transient
+               和
+               @org.jboss.cache.pojo.annotation.Serializable
+               是什么？
+            </a></dt><dt>问： <a href="#d0e285">为什么你推荐加载时改编，而不是编译时改编？</a></dt><dt>问： <a href="#d0e292">可以将相同的对象用不同的 Fqn
+            路径多次存储吗？像 /foo/byName 和 /foo/byId ？
+            </a></dt><dt>问： <a href="#d0e302">我必须改编我的对象吗？
+            </a></dt><dt>问： <a href="#d0e312">POJO Cache 拦截修改是通过 Java 反射实现的吗？</a></dt><dt>问： <a href="#d0e319">当我的 POJO 声明为“面向方面切入”时，
+            对于声明为 transient, static 和 final 的字段有什么影响？
+            </a></dt><dt>问： <a href="#d0e326">像
+               JBoss:internal:class
+               和
+               PojoInstance
+               这类键值是什么？
+            </a></dt><dt>问： <a href="#d0e339">集合类型会怎样？需要我将他们声明为“prepared”吗？
+            </a></dt><dt>问： <a href="#d0e363">我怎么在 POJO Cache 中使用
+               List
+               ,
+               Set
+               和
+               Map？
+            </a></dt><dt>问： <a href="#d0e393">给集合类对象分配两个不同主键的正确方法是什么？
+            </a></dt><dt>问： <a href="#d0e405">好吧，那么我知道了，一旦操作受缓存管理的集合类，
+            我猜测实际是在用代理。但是，如果 POJO 共享集合对象时会怎么样？
+            例如两个对象共享一个
+               List实例会怎么样？
+            </a></dt><dt>问： <a href="#d0e415">当我的改编对象包含集合会怎么样？</a></dt><dt>问： <a href="#d0e427">在 POJO Cache 中使用 Java 集合的限制是什么？</a></dt></dl><table border="0" summary="Q and A Set"><col align="left" width="1%"/><tbody><tr class="question"><td align="left" valign="top"><a id="d0e42"/><a id="a49"/><b>问：</b></td><td align="left" valign="top"><p>POJO Cache是什么？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>POJO Cache 是一个细粒度的、支持字段层复制、
+            支持事务的 <a href="#pojo"><em class="glossterm">POJO</em></a> 缓存技术。
+            强调 POJO，是因为我们强调这个缓存技术：
+            1) 在本地缓存模式和复制缓存模式下，自动为客户端管理对象映射和关系。
+            2) 支持“被切入的”POJO 之间的继承关系。利用 JBossAop 的动态 
+            <a href="#aop"><em class="glossterm">AOP</em></a> 能力，
+            POJO Cache 能够将复杂对象映射到缓存存储中，在幕后保持和管理对象之间的关系。
+            在复制模式下，POJO Cache 能够完成精细的（例如，基于每个字段的变化）更新，
+            这样就能潜在地提高缓存性能并最小化网络流量。
+            </p><p>从一个用户的观点看，一点缓存管理起你的 POJO，
+            所有的操作都是透明的。因此，所有通常虚拟机内部的 POJO 方法都得到了保留，使用方便。
+            例如，如果一个 POJO 已经被放入 POJO Cache
+            （例如，通过调用 <code class="literal">attach</code> 方法），
+            那么任意 POJO 的 get/set 方法将被 POJO Cache 拦截，从缓存中提供数据。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e60"/><a id="a1"/><b>问：</b></td><td align="left" valign="top"><p>Core Cache 和 POJO Cache 两者之间的关系是怎样的？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>Cores Cache 是一个传统的、通用目的的分布式缓存系统。
+            POJO Cache 利用 Core Cache 作为底层分布式状态系统实现对象的缓存。
+            结果就是，所有复制方面（<a href="#aspect"><em class="glossterm">Aspect</em></a>）
+            都是通过缓存 XML 配置文件配置的。
+            另外，POJO Cache 也提供暴露 Cache 接口的 API 
+            （经过 <code class="literal">getCache()</code> API）。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e73"/><a id="a52"/><b>问：</b></td><td align="left" valign="top"><p>Core Cache 和 POJO Cache 两者之间的区别是什么？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>可以将 POJO Cache 看做是一个增强型的缓存。 :-)
+               严格来说，这两者都是缓存存储。一个通用目的的缓存，
+               另一个是针对 POJO 的缓存。
+               但是，Core Cache 仅提供纯对象引用存储（例如，
+               <code class="literal">put(FQN fqn,
+                  Object key, Object value)
+               </code>），而 POJO Cache 除了这些，
+               还能在后台为用户完成细粒度的字段层复制、对象映射和关系管理。
+               所以，如果你想缓存复杂的对象系统，可以让 POJO Cache 替你管理。
+               你只要认为你的对象系统驻留在内存中，例如正常使用 POJO 方法，
+               而不用考虑缓存管理问题。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e83"/><a id="a521"/><b>问：</b></td><td align="left" valign="top"><p>那么 POJO Cache 如何工作？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>POJO Cache 使用 JBoss AOP 项目实现字段层拦截。
+            这样允许 POJO Cache 监视你的对象模型修改，并做适当反应。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e90"/><a id="a522"/><b>问：</b></td><td align="left" valign="top"><p>1.x 和 2.x 版本之间做了那些修改？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>从 2.0 版本开始，我们为 POJO Cache 单独建立了一个库，
+            <code class="literal">pojocache.jar</code> 扩展核心
+               <code class="literal">jboss-cache.jar</code>库。
+               既然我们使用 Cache 作为委托接口，
+               用户需要一个常规 xml 来配置核心 Cache 功能
+               （例如，复制和加锁方面的配置）。
+               另外，还需要
+               <code class="literal">pojocache-aop.xml</code>
+               来说明 POJO Cache 拦截堆栈（也可以不设置，而取缺省值）。
+            </p><p>另外，还有一些变化了的特点：
+               </p><div class="itemizedlist"><ul><li><p>新的 API。它用<code class="literal">attach, detach 和 find</code>
+                     代替<code class="literal">putObject, removeObject 和 get</code>。
+                     </p></li><li><p>新的基于 POJO 的事件，用户可以订阅它。</p></li><li><p>除了常规的为委托 Cache 而用的cache-service.xml，
+                     还添加了专门为 POJO Cache 新的配置文件 pojocache-aop.xml。
+                     </p></li><li><p>新的 POJO Cache 包命名空间（
+                        <code class="literal">org.jboss.cache.pojo</code>）。
+                        原先的
+                        <code class="literal">org.jboss.cache.aop</code>
+                        命名空间已经弃用。
+                     </p></li></ul></div><p>
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e134"/><a id="a53"/><b>问：</b></td><td align="left" valign="top"><p>如何使用 POJO Cache？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>为了使用 POJO Cache，你需要：</p><div class="itemizedlist"><ul><li><p>为你的 POJO 添上 @Replicable 注释。
+                  </p></li><li><p>改编（<a href="#instrumentation"><em class="glossterm">Instrumentation</em></a>）
+                  你的 POJO 。可以使用特殊的 JVM 参数在加载时完成改编（推荐方法），
+                  或者在编译时用 AOP 预编译工具（aopc）完成改编。
+                  有关改编更详细的资料，请查看用户指导。
+                  </p></li></ul></div></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e151"/><a id="a541"/><b>问：</b></td><td align="left" valign="top"><p>运行 POJO Cache 2.x 需要什么版本的 JDK？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>POJO Cache 2.x requires Java 5 or newer.</p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e158"/><a id="a542"/><b>问：</b></td><td align="left" valign="top"><p>能够让 POJO Cache 以一种独立模式运行吗？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>是的，就像核心缓存库一样，你可以独立地运行 POJO Cache，
+            或者在一个应用服务器内部运行。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e165"/><a id="a543"/><b>问：</b></td><td align="left" valign="top"><p>运行 POJO Cache 2.x 的 JBoss AS 推荐版本是什么?</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>POJO Cache 可以运行在 AS4.0.5 （及以上）和 5.0 版本。
+            但是都仍然需要 JDK5.0。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e172"/><a id="a56"/><b>问：</b></td><td align="left" valign="top"><p>我能在 POJO Cache 中使用预先编译的对象吗？
+            这样，我就不必提供 <a href="#aop"><em class="glossterm">AOP</em></a> 描述符了。
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>可以。POJO Cache 附带的 AOP 库有一个预编译程序，
+            叫做 <code class="literal">aopc</code>，
+            可以用这个工具预先改编（<a href="#instrumentation"><em class="glossterm">Instrumentation</em></a>）对象。
+            然而，这样的话你的类型就绑定到某一特定版本的 AOP，所以这不是推荐的方法。
+            请查看用户指导中，有关改编章节的详细内容。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e188"/><a id="a561"/><b>问：</b></td><td align="left" valign="top"><p>在 POJO Cache 2.x 版本中我还需要 <code class="literal">annoc</code>吗？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>不需要。POJO Cache 2.x 需要 JDK 5，并且推荐加载时改编。
+            作为选择，可以使用离线 aopc 工具。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e198"/><a id="a57"/><b>问：</b></td><td align="left" valign="top"><p>在多模块目录下我怎么使用 aopc？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>在 aopc 中，你将 src 路径指定为某一特定目录。
+           要想预编译多个，你就要多次调用 aopc。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e205"/><a id="a57a"/><b>问：</b></td><td align="left" valign="top"><p>POJO Cache 有没有提供一个监听器/事件模型，
+            以便捕捉变化？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>有的。请查看 PojoCache.addListener() 和 @PojoCacheListener 的 Java 文档。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e212"/><a id="a58"/><b>问：</b></td><td align="left" valign="top"><p>在
+               <code class="literal">pojocaches-aop.xml</code>
+               配置文件中有什么？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>
+               有关改编的必要描述符。但是，一般你不需要接触这些，
+               因为对于 @Replicable 注释的类已经包括了一条规则。
+               因此，一所做的一切就是将你的类加上 @Replicable 注释。
+               高级用户可能会决定，
+               通过特定 AOP 预先声明来对非 @Replicable 注释类定制规则。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e222"/><a id="a58a"/><b>问：</b></td><td align="left" valign="top"><p>
+               <code class="literal">jboss-aop.xml</code> 和
+               <code class="literal">pojocache-aop.xml</code>之间的区别是什么？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>
+               <code class="literal">pojocache-aop.xml</code>除了专用于 POJO Cache外没有特别之处，
+               实际上就是一个 <code class="literal">jboss-aop.xml</code>，
+              举例来说，类似于 JBoss 自己的 MBean 服务文件
+               <code class="literal">jboss-service.xml</code>。
+               因此，在我们文档中交替使用这两个术语。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e244"/><a id="a59"/><b>问：</b></td><td align="left" valign="top"><p>我能够使用注释，而不用编辑 AOP XML 描述符吗？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>在 2.0 版本是可以的。我们推荐你使用 @Replicable 注释，
+            这样就没有编辑 AOP 文件的烦恼了。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e251"/><a id="a60"/><b>问：</b></td><td align="left" valign="top"><p>如果用自定义的 AOP 描述符覆盖提供的注释会不会有问题？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>仅当你在源代码上添加注释困难时（它不在你的控制之下），
+            自定义 AOP 描述符才是一个好的选择。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e258"/><a id="a61"/><b>问：</b></td><td align="left" valign="top"><p>字段层的注释
+               <code class="literal">@org.jboss.cache.pojo.annotation.Transient</code>
+               和
+               <code class="literal">@org.jboss.cache.pojo.annotation.Serializable</code>
+               是什么？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>在 2.0 版本中，我们也提供两个附加的字段层注释。
+            第一个是，
+               <code class="literal">@org.jboss.cache.pojo.Transient</code>
+               ，当用它时与<code class="literal">transient</code>字段声明有相同的效果。
+               POJO Cache 不会将这个字段至于控制之下。
+            </p><p>第二个，
+               <code class="literal">@org.jboss.cache.pojo.Serializable</code>
+               ，当用它时会使 POJO Cache 将这个字段视为序列化对象，即便它是
+               <code class="literal">@org.jboss.cache.pojo.Replicable</code>也是这样。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e285"/><a id="a62"/><b>问：</b></td><td align="left" valign="top"><p>为什么你推荐加载时改编，而不是编译时改编？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p> 编译时改编的主要问题是，它在你的类字段上增加了二进制依赖
+            ，这样你就依赖于运行 aopc 的 JBoss AOP 版本。
+            一旦这样做，尽管 AOP 组试图保证小幅版本更新之间的二进制兼容，
+            在未来版本的 JBoss AOP 上这个类还是有可能无法工作。
+            加载时改编就不存在上述问题，因为类是在加载时在内存中改编的。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e292"/><a id="a63"/><b>问：</b></td><td align="left" valign="top"><p>可以将相同的对象用不同的 <a href="#fqn"><em class="glossterm">Fqn</em></a>
+            路径多次存储吗？像 /foo/byName 和 /foo/byId ？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>可以。你可以用 POJO Cache 实现这个想法。
+            POJO Cache 支持多对象引用的概念。
+            POJO Cache 通过动态缓存拦截管理对象唯一性。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e302"/><a id="a64"/><b>问：</b></td><td align="left" valign="top"><p>我必须改编我的对象吗？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p> 你也可以将实现 <code class="literal">Serializable</code> 接口的对象添加到缓存。
+            但是，这样你就失去了字段层复制和对象标示维护的功能。
+            支持这样做的唯一原因是从兼容性的角度来衡量。
+            可以肯定地说，改编是值得的。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e312"/><a id="a65"/><b>问：</b></td><td align="left" valign="top"><p>POJO Cache 拦截修改是通过 Java 反射实现的吗？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>可以说是，也可以说不是。既然 POJO Cache 拦截字段修改，
+            注释为 @Replicable 对象的任何方法都能够通过反射调用正确处理。
+            但是，当前不支持使用反射修改字段。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e319"/><a id="a66"/><b>问：</b></td><td align="left" valign="top"><p>当我的 POJO 声明为“面向方面切入”时，
+            对于声明为 transient, static 和 final 的字段有什么影响？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>POJO Cache 当前忽略这些字段的修饰符。
+            也就是说，它不会把这些字段放入缓存（也就不会有复制发生）。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e326"/><a id="a67"/><b>问：</b></td><td align="left" valign="top"><p>像
+               <code class="literal">JBoss:internal:class</code>
+               和
+               <code class="literal">PojoInstance</code>
+               这类键值是什么？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>他们仅限于内部使用。在节点 hashmap 里面，用户应该忽略这些键和值。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e339"/><a id="a68"/><b>问：</b></td><td align="left" valign="top"><p>集合类型会怎样？需要我将他们声明为“prepared”吗？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>不需要。既然集合类，例如
+               <code class="literal">ArrayList</code>
+               ，是 Java 工具类，
+               <a href="#aop"><em class="glossterm">aop</em></a>缺省情况下不会改编这些类型。
+               反而，POJO Cache 会为这些集合类（在<code class="literal">attach</code>调用之前）
+               产生动态类型代理。
+               代理会向实现实际集合类 API 的缓存拦截器委派操作。
+               也就是说，当在 POJO Cache 中使用时，系统类不会被调用。
+            </p><p>在内部，缓存拦截器实现直接与底层缓存存储交互的 API。
+            注意：这可能对某些 API 的性能有影响。例如：对于
+               <code class="literal">ArrayList</code>
+               和
+               <code class="literal">LinkedList</code>
+               这两个集合类，实现是完全一样的。现在已经有了优化这些 API 的计划。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e363"/><a id="a69"/><b>问：</b></td><td align="left" valign="top"><p>我怎么在 POJO Cache 中使用
+               <code class="literal">List</code>
+               ,
+               <code class="literal">Set</code>
+               和
+               <code class="literal">Map</code>？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>POJO Cache 不需要改编就支持所有实现
+               <code class="literal">List</code>
+               ,
+               <code class="literal">Set</code>
+               和
+               <code class="literal">Map</code>
+               接口的类型。是通过动态代理实现的，
+               这有个使用<code class="literal">ArrayList</code> 的例子：
+            </p><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">ArrayList</span><span class="java_plain">&nbsp;list&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">ArrayList</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;list</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;first&quot;</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">attach</span><span class="java_separator">(</span><span class="java_literal">&quot;/list/test&quot;</span><span class="java_separator">,</span><span class="java_plain">&nbsp;list</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_type">Put</span><span class="java_plain">&nbsp;the&nbsp;list&nbsp;under&nbsp;the&nbsp;cache</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;list</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;second&quot;</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_type">Won</span><span class="java_plain">'t&nbsp;work&nbsp;since&nbsp;AOP&nbsp;intercepts&nbsp;the&nbsp;dynamic&nbsp;proxy&nbsp;not&nbsp;the&nbsp;original&nbsp;POJO</span><span class="java_separator">.</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">ArrayList</span><span class="java_plain">&nbsp;myList&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_separator">(</span><span class="java_type">List</span><span class="java_separator">)</span><span class="java_plain">cache</span><span class="java_separator">.</span><span class="java_plain">find</span><span class="java_separator">(</span><span class="java_literal">&quot;/list/test&quot;</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;we&nbsp;are&nbsp;getting&nbsp;a&nbsp;dynamic&nbsp;proxy&nbsp;instead</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;myList</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;second&quot;</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;it&nbsp;works&nbsp;now</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;myList</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;third&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;myList</span><span class="java_separator">.</span><span class="java_plain">remove</span><span class="java_separator">(</span><span class="java_literal">&quot;third&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e393"/><a id="a70"/><b>问：</b></td><td align="left" valign="top"><p>给集合类对象分配两个不同主键的正确方法是什么？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>也就是说，想给<code class="literal">List</code>对象分配两个不同的名字，
+            你需要在第二次插入时使用代理类，这样保证两者都受缓存的管理。
+            下面是代码片段。
+            </p><pre xmlns="" xmlns:rf="java:org.jboss.highlight.XhtmlRendererFactory" class="JAVA"></span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">ArrayList</span><span class="java_plain">&nbsp;list&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_keyword">new</span><span class="java_plain">&nbsp;</span><span class="java_type">ArrayList</span><span class="java_separator">();</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;list</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;first&quot;</span><span class="java_separator">);</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">attach</span><span class="java_separator">(</span><span class="java_literal">&quot;/list&quot;</span><span class="java_separator">,</span><span class="java_plain">&nbsp;list</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_type">Put</span><span class="java_plain">&nbsp;the&nbsp;list&nbsp;under&nbsp;the&nbsp;aop&nbsp;cache</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;</span><span class="java_type">ArrayList</span><span class="java_plain">&nbsp;myList&nbsp;</span><span class="java_operator">=</span><span class="java_plain">&nbsp;</span><span class="java_separator">(</span><span class="java_type">List</span><span class="java_separator">)</span><span class="java_plain">cache</span><span class="java_separator">.</span><span class="java_plain">find</span><span class="java_separator">(</span><span class="java_literal">&quot;/list&quot;</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;we&nbsp;are&nbsp;getting&nbsp;a&nbsp;dynamic&nbsp;proxy&nbsp;instead</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;myList</span><span class="java_separator">.</span><span class="java_plain">add</span><span class="java_separator">(</span><span class="java_literal">&quot;second&quot;</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;it&nbsp;works&nbsp;now</span>
+</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;cache</span><span class="java_separator">.</span><span class="java_plain">attach</span><span class="java_separator">(</span><span class="java_literal">&quot;/list_alias&quot;</span><span class="java_separator">,</span><span class="java_plain">&nbsp;myList</span><span class="java_separator">);</span><span class="java_plain">&nbsp;</span><span class="java_operator">//</span><span class="java_plain">&nbsp;</span><span class="java_type">Note</span><span class="java_plain">&nbsp;you&nbsp;will&nbsp;need&nbsp;to&nbsp;use&nbsp;the&nbsp;proxy&nbsp;here</span><span class="java_operator">!!</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;myList</span><span class="java_separator">.</span><span class="java_plain">remove</span><span class="java_separator">(</span><span class="java_literal">&quot;second&quot;</span><span class="java_separator">);</span>
+<!--  --><br/><span class="java_plain">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></pre></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e405"/><a id="a71"/><b>问：</b></td><td align="left" valign="top"><p>好吧，那么我知道了，一旦操作受缓存管理的集合类，
+            我猜测实际是在用代理。但是，如果 POJO 共享集合对象时会怎么样？
+            例如两个对象共享一个
+               <code class="literal">List</code>实例会怎么样？
+            </p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>缓存会自动处理共享集合实例引用的 POJO。
+            也就是说，当你要求缓存管理它时，缓存会自动将正常的集合引用置换为动态代理。
+            结果，对你来说是透明的。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e415"/><a id="a72"/><b>问：</b></td><td align="left" valign="top"><p>当我的改编对象包含集合会怎么样？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>当一个对象传递给
+               <code class="literal">attach</code> 时，
+               它也会递归地将字段成员映射到缓存存储中。
+               如果字段成员是一个集合类型（例如 List, Set 或 Map），
+               POJO Cache 会先将这些集合映射到缓存中，
+               然后它会将字段引用置换为一个对应的代理引用。
+            </p><p>这么做是必须的，只有这样缓存才能拦截更新字段成员的内部操作。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e427"/><a id="a73"/><b>问：</b></td><td align="left" valign="top"><p>在 POJO Cache 中使用 Java 集合的限制是什么？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>
+               支持 List, Set 和 Map，但是这些 API 没有对一些约束进行规定，
+               例如是否允许空主键和值。
+               因此，添加到缓存后，集合的行为与一般 Java 实现相比，有少许不同。
+               POJO Cache 实现的集合行为，遵循这种规律：
+               对任何 Set 类型实现为 java.util.HashSet，
+               对任何 List 类型实例为 java.util.ArrayList，
+               对任何 Map 类型实现为 java.util.HashMap。
+            </p></td></tr></tbody></table></div><div class="qandaset"><h2 class="title"><a id="d0e434"/>钝化（<a href="#passivation"><em class="glossterm">Passivation</em></a>）
+      和驱逐（<a href="#eviction"><em class="glossterm">Eviction</em></a>）</h2><dl><dt>问： <a href="#d0e443">我能够使用驱逐技术将 POJO 从内存中驱逐出去吗？</a></dt><dt>问： <a href="#d0e450">支持钝化吗？</a></dt></dl><table border="0" summary="Q and A Set"><col align="left" width="1%"/><tbody><tr class="question"><td align="left" valign="top"><a id="d0e443"/><a id="a80"/><b>问：</b></td><td align="left" valign="top"><p>我能够使用驱逐技术将 POJO 从内存中驱逐出去吗？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>在 2.0 版本中，我们将基于 POJO 的驱逐策略删掉了，
+            因为在早期版本中它总是有问题。
+            但是，你可以使用标准的 Core Cache 驱逐系统来驱逐数据，它是支持 POJO 的。
+            </p></td></tr><tr class="question"><td align="left" valign="top"><a id="d0e450"/><a id="a81"/><b>问：</b></td><td align="left" valign="top"><p>支持钝化吗？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>支持。为了减少内存占用，你可以使用 Core Cache 带有的钝化技术。
+            钝化组合使用驱逐技术和缓存加载器，这样当信息陈旧时，它就从内存被驱逐，
+            存储在一个缓存存储（可能是数据库或文件）里面。
+            下次，当这个信息又被访问时，我们可以从缓存存储中将其取回。
+            </p></td></tr></tbody></table></div><div class="qandaset"><h2 class="title"><a id="d0e457"/>解决问题</h2><dl><dt>问： <a href="#d0e460">我的 POJO Cache 有问题不能正常工作，在哪里能找到解决问题的信息？</a></dt></dl><table border="0" summary="Q and A Set"><col align="left" width="1%"/><tbody><tr class="question"><td align="left" valign="top"><a id="d0e460"/><a id="a90"/><b>问：</b></td><td align="left" valign="top"><p>我的 POJO Cache 有问题不能正常工作，在哪里能找到解决问题的信息？</p></td></tr><tr class="answer"><td align="left" valign="top"><b>答：</b></td><td align="left" valign="top"><p>在下面
+               <a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://wiki.jboss.org/wiki/Wiki.jsp?page=PojoCacheTroubleshooting">wiki 连接</a>
+               处，可以找到解决问题的部分。
+            </p></td></tr></tbody></table></div><div class="glossary"><div class="titlepage"><div><div><h2 class="title"><a id="d0e470"/>术语表</h2></div></div></div><div class="glossdiv"><h3 class="title">A</h3><dl><dt><a id="aop"/>AOP</dt><dd><p>Aspect-Oriented Programming，面向方面编程。</p></dd><dt><a id="api"/>API</dt><dd><p>Application Programming Interface，应用编程接口。</p></dd><dt><a id="aspect"/>Aspect</dt><dd><p>面向方面编程中的关键术语，这里翻译成方面。</p></dd></dl></div><div class="glossdiv"><h3 class="title">E</h3><dl><dt><a id="eviction"/>Eviction</dt><dd><p>通过设置条件（例如过期日期或内存压力过大），
+                   将对象显式地从缓存中移除，这种方法称为Eviction，翻译为驱逐。</p></dd></dl></div><div class="glossdiv"><h3 class="title">F</h3><dl><dt><a id="fqn"/>Fqn</dt><dd><p>Fully Qualified Name，全路径名。</p></dd></dl></div><div class="glossdiv"><h3 class="title">I</h3><dl><dt><a id="introspection"/>Introspection</dt><dd><p>当程序接受到请求时，它根据请求的参数名称，
+                   自动设定与 javaBean 相同属性名称的值，这种机制叫做自省(introspection)。</p></dd><dt><a id="instrumentation"/>Instrumentation</dt><dd><p>是 Java 5 提供的新特性。
+                   使用 Instrumentation，开发者可以构建一个代理，用来监测运行在 JVM 上的程序。
+                   监测一般是通过在执行某个类文件之前，对该类文件的字节码进行适当修改进行的。
+                   在这里我们翻译成改编。</p></dd></dl></div><div class="glossdiv"><h3 class="title">J</h3><dl><dt><a id="jmx"/>JMX</dt><dd><p>Java Management Extensions,是一个为应用程序植入管理功能的框架。</p></dd><dt><a id="jta"/>JTA</dt><dd><p>Java Transaction API，是一个独立于实现和协议的高级 API，
+                   它使应用程序和应用服务器可以访问事务。
+                   参见<a xmlns:xlink="http://www.w3.org/1999/xlink" href="http://java.sun.com/products/jta/">JTA</a>。</p></dd><dt><a id="jvm"/>JVM</dt><dd><p>Java Virtual Machines，Java 虚拟机。</p></dd></dl></div><div class="glossdiv"><h3 class="title">P</h3><dl><dt><a id="passivation"/>Passivation</dt><dd><p>是指将数据从缓存转移到持久存储中，腾空内存，它是激活（Activation）的反向操作。</p></dd><dt><a id="pojo"/>POJO</dt><dd><p>Plain Old Java Object，简单Java对象。</p></dd></dl></div></div></div></body></html>
