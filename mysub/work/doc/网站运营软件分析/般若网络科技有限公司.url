@@ -1,0 +1,22 @@
+[DEFAULT]
+BASEURL=http://www.banruo.net/
+[DOC#10#11#9_ba]
+BASEURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/advtemp/bgpage.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/index1.htm&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.6105005020692131
+ORIGURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/advtemp/bgpage.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/index1.htm&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.6105005020692131
+[DOC#10#11_ba]
+BASEURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/index1.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.6840106639974814
+ORIGURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/index1.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.6840106639974814
+[DOC#10#12#13_ba]
+BASEURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/index2.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.6823798089710309
+ORIGURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/index2.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.6823798089710309
+[DOC#10#12#14]
+BASEURL=http://www.banruo.net/productintro/Professional.htm
+ORIGURL=xwzx.htm
+[DOC#10#12#14_ba]
+BASEURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/productintro/Professional.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/index2.htm&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.46696614311240175
+ORIGURL=http://www.web-ia.cn:8001/ba/ba.jsp?ba_user=2414&ba_host=www.banruo.net&ba_h_s_p=http://www.banruo.net/productintro/Professional.htm - 80&ba_agt=Mozilla/4.0+(compatible;+MSIE+7.0;+Windows+NT+5.1;+Mozilla/4.0+(compatible;+MSIE+6.0;+Windows+NT+5.1;+SV1)+;+.NET+CLR+2.0.50727;+CIBA)&ba_referrer=http://www.banruo.net/index2.htm&ba_screen=1280x800&ba_cookie=1244718971875@788&ba_ucuser=&ba_ucucookie=&random=0.46696614311240175
+[InternetShortcut]
+URL=http://www.banruo.net/
+IDList=
+[{000214A0-0000-0000-C000-000000000046}]
+Prop3=19,2
