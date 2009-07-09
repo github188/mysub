@@ -1,0 +1,887 @@
+  <?xml version="1.0" encoding="UTF-8" ?> 
+  <wsdl:definitions targetNamespace="http://webservice.portal.intf.mc.ismp.zznode.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.portal.intf.mc.ismp.zznode.com" xmlns:intf="http://webservice.portal.intf.mc.ismp.zznode.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!-- 
+WSDL created by Apache Axis version: 1.3
+Built on Oct 05, 2005 (05:23:37 EDT)
+
+  --> 
+  <wsdl:types>
+  <schema targetNamespace="http://webservice.portal.intf.mc.ismp.zznode.com" xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/" /> 
+  <complexType name="FreeTrialInfo">
+  <sequence>
+  <element name="productID" type="xsd:string" /> 
+  <element name="serviceName" type="xsd:string" /> 
+  <element name="startDate" type="xsd:dateTime" /> 
+  <element name="endDate" type="xsd:dateTime" /> 
+  <element name="freeTrialStatus" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOfFreeTrialInfo">
+  <complexContent>
+  <restriction base="soapenc:Array">
+  <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:FreeTrialInfo[]" /> 
+  </restriction>
+  </complexContent>
+  </complexType>
+  <complexType name="FreeTrialInfoList">
+  <sequence>
+  <element name="freeTrialInfos" nillable="true" type="impl:ArrayOfFreeTrialInfo" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ResultInfo">
+  <sequence>
+  <element name="resultCode" type="xsd:int" /> 
+  <element name="resultMessage" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="EnterpriseMemberInfo">
+  <sequence>
+  <element name="msisdn" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="EnterpriseInfo">
+  <sequence>
+  <element name="entCode" type="xsd:string" /> 
+  <element name="entStat" nillable="true" type="xsd:string" /> 
+  <element name="entName" nillable="true" type="xsd:string" /> 
+  <element name="entRegArea" nillable="true" type="xsd:string" /> 
+  <element name="entAddr" nillable="true" type="xsd:string" /> 
+  <element name="entJuriPerson" nillable="true" type="xsd:string" /> 
+  <element name="entOpenBank" nillable="true" type="xsd:string" /> 
+  <element name="entBankAccount" nillable="true" type="xsd:string" /> 
+  <element name="entContPerson" nillable="true" type="xsd:string" /> 
+  <element name="entContMobile" nillable="true" type="xsd:string" /> 
+  <element name="entContFax" nillable="true" type="xsd:string" /> 
+  <element name="entContPhone" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="EnablerURLInfo">
+  <sequence>
+  <element name="enablerURL" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ServiceUsageInfo">
+  <sequence>
+  <element name="serviceName" nillable="true" type="xsd:string" /> 
+  <element name="serviceEnablerType" nillable="true" type="xsd:string" /> 
+  <element name="msgType" nillable="true" type="xsd:string" /> 
+  <element name="useTime" nillable="true" type="xsd:string" /> 
+  <element name="smsContent" nillable="true" type="xsd:string" /> 
+  <element name="accessNo" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOfServiceUsageInfo">
+  <complexContent>
+  <restriction base="soapenc:Array">
+  <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:ServiceUsageInfo[]" /> 
+  </restriction>
+  </complexContent>
+  </complexType>
+  <complexType name="ServiceUsageInfoList">
+  <sequence>
+  <element name="serviceUsageInfos" nillable="true" type="impl:ArrayOfServiceUsageInfo" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ConsumptionInfo">
+  <sequence>
+  <element name="serviceCode" nillable="true" type="xsd:string" /> 
+  <element name="serviceName" nillable="true" type="xsd:string" /> 
+  <element name="conRecDate" nillable="true" type="xsd:string" /> 
+  <element name="serviceEnablerType" nillable="true" type="xsd:string" /> 
+  <element name="conFee" type="xsd:int" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOfConsumptionInfo">
+  <complexContent>
+  <restriction base="soapenc:Array">
+  <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:ConsumptionInfo[]" /> 
+  </restriction>
+  </complexContent>
+  </complexType>
+  <complexType name="ConsumptionInfoList">
+  <sequence>
+  <element name="consumptionInfos" nillable="true" type="impl:ArrayOfConsumptionInfo" /> 
+  </sequence>
+  </complexType>
+  <complexType name="SubHistoryInfo">
+  <sequence>
+  <element name="PID" nillable="true" type="xsd:string" /> 
+  <element name="flag" type="xsd:int" /> 
+  <element name="initiator" nillable="true" type="xsd:string" /> 
+  <element name="initiatorType" type="xsd:int" /> 
+  <element name="owner" nillable="true" type="xsd:string" /> 
+  <element name="ownerType" type="xsd:int" /> 
+  <element name="payer" nillable="true" type="xsd:string" /> 
+  <element name="payerType" type="xsd:int" /> 
+  <element name="subscriptionDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="subscriptionStatus" nillable="true" type="xsd:string" /> 
+  <element name="type" type="xsd:int" /> 
+  <element name="unsubscriptionDate" nillable="true" type="xsd:dateTime" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOfSubHistoryInfo">
+  <complexContent>
+  <restriction base="soapenc:Array">
+  <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SubHistoryInfo[]" /> 
+  </restriction>
+  </complexContent>
+  </complexType>
+  <complexType name="SubHistoryInfoList">
+  <sequence>
+  <element name="num" type="xsd:short" /> 
+  <element name="subHistoryInfos" nillable="true" type="impl:ArrayOfSubHistoryInfo" /> 
+  </sequence>
+  </complexType>
+  <complexType name="SubInfo">
+  <sequence>
+  <element name="PID" nillable="true" type="xsd:string" /> 
+  <element name="effectiveDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="expireDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="flag" type="xsd:int" /> 
+  <element name="payer" nillable="true" type="xsd:string" /> 
+  <element name="payerType" type="xsd:int" /> 
+  <element name="productID" nillable="true" type="xsd:string" /> 
+  <element name="subscribeType" type="xsd:int" /> 
+  <element name="subscriptionDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="subscriptionStatus" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOfSubInfo">
+  <complexContent>
+  <restriction base="soapenc:Array">
+  <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:SubInfo[]" /> 
+  </restriction>
+  </complexContent>
+  </complexType>
+  <complexType name="SubInfoList">
+  <sequence>
+  <element name="num" type="xsd:short" /> 
+  <element name="subInfos" nillable="true" type="impl:ArrayOfSubInfo" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ServiceOrderInfo">
+  <sequence>
+  <element name="PDependency" nillable="true" type="xsd:string" /> 
+  <element name="linkID" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="SubscriptionInfo">
+  <sequence>
+  <element name="PDependency" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="AppealResultInfo">
+  <sequence>
+  <element name="appealId" nillable="true" type="xsd:string" /> 
+  <element name="appealDes" nillable="true" type="xsd:string" /> 
+  <element name="appealStatus" nillable="true" type="xsd:string" /> 
+  <element name="appealDate" nillable="true" type="xsd:dateTime" /> 
+  <element name="dealDept" nillable="true" type="xsd:string" /> 
+  <element name="dealStuffId" nillable="true" type="xsd:string" /> 
+  <element name="dealContent" nillable="true" type="xsd:string" /> 
+  <element name="dealDate" nillable="true" type="xsd:dateTime" /> 
+  </sequence>
+  </complexType>
+  <complexType name="ArrayOfAppealResultInfo">
+  <complexContent>
+  <restriction base="soapenc:Array">
+  <attribute ref="soapenc:arrayType" wsdl:arrayType="impl:AppealResultInfo[]" /> 
+  </restriction>
+  </complexContent>
+  </complexType>
+  <complexType name="AppealResultInfoList">
+  <sequence>
+  <element name="appealResultInfos" nillable="true" type="impl:ArrayOfAppealResultInfo" /> 
+  </sequence>
+  </complexType>
+  <complexType name="AppealInfo">
+  <sequence>
+  <element name="appealId" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="UserInfo">
+  <sequence>
+  <element name="email" nillable="true" type="xsd:string" /> 
+  <element name="passwordQuestion" nillable="true" type="xsd:string" /> 
+  <element name="passwordAnswer" nillable="true" type="xsd:string" /> 
+  <element name="languagePref" nillable="true" type="xsd:string" /> 
+  <element name="userAgent" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  <complexType name="PasswordInfo">
+  <sequence>
+  <element name="streamingNo" type="xsd:string" /> 
+  <element name="password" nillable="true" type="xsd:string" /> 
+  </sequence>
+  </complexType>
+  </schema>
+  </wsdl:types>
+  <wsdl:message name="allMemberCreateSubscriptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="serviceId" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="readUserRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="retrieveBy" type="xsd:int" /> 
+  <wsdl:part name="userInfoHolder" type="impl:UserInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="querySubscriptionHistoryResponse">
+  <wsdl:part name="querySubscriptionHistoryReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="subHistoryInfoListHolder" type="impl:SubHistoryInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="queryFreeTrialRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="freeTrialInfoListHolder" type="impl:FreeTrialInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="orderServiceResponse">
+  <wsdl:part name="orderServiceReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="serviceOrderInfoHolder" type="impl:ServiceOrderInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+  <wsdl:part name="createUserReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryEnablerURLResponse">
+  <wsdl:part name="queryEnablerURLReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="enablerURLInfoHolder" type="impl:EnablerURLInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="modifyPasswordRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="oldPassword" type="xsd:string" /> 
+  <wsdl:part name="newPassword" type="xsd:string" /> 
+  <wsdl:part name="modifyBy" type="xsd:int" /> 
+  </wsdl:message>
+  <wsdl:message name="queryServiceUsageResponse">
+  <wsdl:part name="queryServiceUsageReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="serviceUsageInfoHolder" type="impl:ServiceUsageInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="queryConsumptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="queryMonth" type="xsd:string" /> 
+  <wsdl:part name="consumptionInfoHolder" type="impl:ConsumptionInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="addEnterpriseMemberRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="msisdn" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="queryAppealResultRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="appealResultInfoHolder" type="impl:AppealResultInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="sendSMSResponse">
+  <wsdl:part name="sendSMSReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="withdrawAllSubscriptionResponse">
+  <wsdl:part name="withdrawAllSubscriptionReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryServiceUsageRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="queryMonth" type="xsd:string" /> 
+  <wsdl:part name="serviceUsageInfoHolder" type="impl:ServiceUsageInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="allMemberWithdrawOneSubscriptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="serviceId" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="withdrawAllSubscriptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="sendNotification" type="xsd:boolean" /> 
+  <wsdl:part name="from" type="xsd:int" /> 
+  <wsdl:part name="withdrawEffectiveDate" type="xsd:dateTime" /> 
+  </wsdl:message>
+  <wsdl:message name="queryEnterpriseMemberResponse">
+  <wsdl:part name="queryEnterpriseMemberReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="enterpriseMemberInfoHolder" type="impl:EnterpriseMemberInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryEnterpriseRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="enterpriseInfoHolder" type="impl:EnterpriseInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="getSubscriptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="retrieveBy" type="xsd:int" /> 
+  <wsdl:part name="subInfoListHolder" type="impl:SubInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="modEnterpriseMemberResponse">
+  <wsdl:part name="modEnterpriseMemberReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="delEnterpriseMemberRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="msisdn" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="resetPasswordRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="retrieveBy" type="xsd:int" /> 
+  </wsdl:message>
+  <wsdl:message name="querySubscriptionHistoryRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="startDate" type="xsd:dateTime" /> 
+  <wsdl:part name="endDate" type="xsd:dateTime" /> 
+  <wsdl:part name="retrieveBy" type="xsd:int" /> 
+  <wsdl:part name="subHistoryInfoListHolder" type="impl:SubHistoryInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="getSubscriptionResponse">
+  <wsdl:part name="getSubscriptionReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="subInfoListHolder" type="impl:SubInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="modifyPasswordResponse">
+  <wsdl:part name="modifyPasswordReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryPasswordResponse">
+  <wsdl:part name="queryPasswordReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="passwordInfoHolder" type="impl:PasswordInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryConsumptionResponse">
+  <wsdl:part name="queryConsumptionReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="consumptionInfoHolder" type="impl:ConsumptionInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="modifyUserRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="modifyFrom" type="xsd:int" /> 
+  <wsdl:part name="email" type="xsd:string" /> 
+  <wsdl:part name="passwordQuestion" type="xsd:string" /> 
+  <wsdl:part name="passwordAnswer" type="xsd:string" /> 
+  <wsdl:part name="languagePref" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="addEnterpriseMemberResponse">
+  <wsdl:part name="addEnterpriseMemberReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="modifyUserResponse">
+  <wsdl:part name="modifyUserReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryPasswordRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="retrieveBy" type="xsd:int" /> 
+  <wsdl:part name="passwordInfoHolder" type="impl:PasswordInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="orderServiceRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="initiator" type="xsd:string" /> 
+  <wsdl:part name="initiatorType" type="xsd:int" /> 
+  <wsdl:part name="owner" type="xsd:string" /> 
+  <wsdl:part name="ownerType" type="xsd:int" /> 
+  <wsdl:part name="payer" type="xsd:string" /> 
+  <wsdl:part name="payerType" type="xsd:int" /> 
+  <wsdl:part name="subscribeFrom" type="xsd:int" /> 
+  <wsdl:part name="flag" type="xsd:int" /> 
+  <wsdl:part name="PID" type="xsd:string" /> 
+  <wsdl:part name="effectiveDate" type="xsd:dateTime" /> 
+  <wsdl:part name="expireDate" type="xsd:dateTime" /> 
+  <wsdl:part name="subscribeType" type="xsd:int" /> 
+  <wsdl:part name="serviceOrderInfoHolder" type="impl:ServiceOrderInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="createSubscriptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="initiator" type="xsd:string" /> 
+  <wsdl:part name="initiatorType" type="xsd:int" /> 
+  <wsdl:part name="owner" type="xsd:string" /> 
+  <wsdl:part name="ownerType" type="xsd:int" /> 
+  <wsdl:part name="payer" type="xsd:string" /> 
+  <wsdl:part name="payerType" type="xsd:int" /> 
+  <wsdl:part name="subscribeFrom" type="xsd:int" /> 
+  <wsdl:part name="flag" type="xsd:int" /> 
+  <wsdl:part name="PID" type="xsd:string" /> 
+  <wsdl:part name="effectiveDate" type="xsd:dateTime" /> 
+  <wsdl:part name="expireDate" type="xsd:dateTime" /> 
+  <wsdl:part name="subscribeType" type="xsd:int" /> 
+  <wsdl:part name="subscriptionInfoHolder" type="impl:SubscriptionInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="userAppealResponse">
+  <wsdl:part name="userAppealReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="appealInfoHolder" type="impl:AppealInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryFreeTrialResponse">
+  <wsdl:part name="queryFreeTrialReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="freeTrialInfoListHolder" type="impl:FreeTrialInfoList" /> 
+  </wsdl:message>
+  <wsdl:message name="readUserResponse">
+  <wsdl:part name="readUserReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="userInfoHolder" type="impl:UserInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="withdrawOneSubscriptionRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="PID" type="xsd:string" /> 
+  <wsdl:part name="flag" type="xsd:int" /> 
+  <wsdl:part name="sendNotification" type="xsd:boolean" /> 
+  <wsdl:part name="from" type="xsd:int" /> 
+  <wsdl:part name="withdrawEffectiveDate" type="xsd:dateTime" /> 
+  </wsdl:message>
+  <wsdl:message name="userAppealRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="appealDes" type="xsd:string" /> 
+  <wsdl:part name="appealInfoHolder" type="impl:AppealInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="createSubscriptionResponse">
+  <wsdl:part name="createSubscriptionReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="subscriptionInfoHolder" type="impl:SubscriptionInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="resetPasswordResponse">
+  <wsdl:part name="resetPasswordReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="withdrawOneSubscriptionResponse">
+  <wsdl:part name="withdrawOneSubscriptionReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryEnablerURLRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="enablerType" type="xsd:int" /> 
+  <wsdl:part name="retrieveBy" type="xsd:int" /> 
+  <wsdl:part name="enablerURLInfoHolder" type="impl:EnablerURLInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="sendSMSRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="mSISDNFrom" type="xsd:string" /> 
+  <wsdl:part name="mSISDNTo" type="xsd:string" /> 
+  <wsdl:part name="provinceID" type="xsd:int" /> 
+  <wsdl:part name="mSISDN" type="xsd:string" /> 
+  <wsdl:part name="cnMessage" type="xsd:string" /> 
+  <wsdl:part name="enMessage" type="xsd:string" /> 
+  <wsdl:part name="priority" type="xsd:int" /> 
+  </wsdl:message>
+  <wsdl:message name="allMemberCreateSubscriptionResponse">
+  <wsdl:part name="allMemberCreateSubscriptionReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="modEnterpriseMemberRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="msisdn" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="createUserRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceID" type="xsd:string" /> 
+  <wsdl:part name="userID" type="xsd:string" /> 
+  <wsdl:part name="userType" type="xsd:int" /> 
+  <wsdl:part name="password" type="xsd:string" /> 
+  <wsdl:part name="from" type="xsd:int" /> 
+  <wsdl:part name="email" type="xsd:string" /> 
+  <wsdl:part name="passwordQuestion" type="xsd:string" /> 
+  <wsdl:part name="passwordAnswer" type="xsd:string" /> 
+  <wsdl:part name="languagePref" type="xsd:string" /> 
+  </wsdl:message>
+  <wsdl:message name="queryEnterpriseMemberRequest">
+  <wsdl:part name="streamingNo" type="xsd:string" /> 
+  <wsdl:part name="srcDeviceId" type="xsd:string" /> 
+  <wsdl:part name="entCode" type="xsd:string" /> 
+  <wsdl:part name="enterpriseMemberInfoHolder" type="impl:EnterpriseMemberInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="allMemberWithdrawOneSubscriptionResponse">
+  <wsdl:part name="allMemberWithdrawOneSubscriptionReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryEnterpriseResponse">
+  <wsdl:part name="queryEnterpriseReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="enterpriseInfoHolder" type="impl:EnterpriseInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="delEnterpriseMemberResponse">
+  <wsdl:part name="delEnterpriseMemberReturn" type="impl:ResultInfo" /> 
+  </wsdl:message>
+  <wsdl:message name="queryAppealResultResponse">
+  <wsdl:part name="queryAppealResultReturn" type="impl:ResultInfo" /> 
+  <wsdl:part name="appealResultInfoHolder" type="impl:AppealResultInfoList" /> 
+  </wsdl:message>
+  <wsdl:portType name="PortalEngineDXSoapBindingImpl">
+  <wsdl:operation name="queryFreeTrial" parameterOrder="streamingNo srcDeviceID userID userType freeTrialInfoListHolder">
+  <wsdl:input message="impl:queryFreeTrialRequest" name="queryFreeTrialRequest" /> 
+  <wsdl:output message="impl:queryFreeTrialResponse" name="queryFreeTrialResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="allMemberWithdrawOneSubscription" parameterOrder="streamingNo srcDeviceId entCode serviceId">
+  <wsdl:input message="impl:allMemberWithdrawOneSubscriptionRequest" name="allMemberWithdrawOneSubscriptionRequest" /> 
+  <wsdl:output message="impl:allMemberWithdrawOneSubscriptionResponse" name="allMemberWithdrawOneSubscriptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="allMemberCreateSubscription" parameterOrder="streamingNo srcDeviceId entCode serviceId">
+  <wsdl:input message="impl:allMemberCreateSubscriptionRequest" name="allMemberCreateSubscriptionRequest" /> 
+  <wsdl:output message="impl:allMemberCreateSubscriptionResponse" name="allMemberCreateSubscriptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryEnterpriseMember" parameterOrder="streamingNo srcDeviceId entCode enterpriseMemberInfoHolder">
+  <wsdl:input message="impl:queryEnterpriseMemberRequest" name="queryEnterpriseMemberRequest" /> 
+  <wsdl:output message="impl:queryEnterpriseMemberResponse" name="queryEnterpriseMemberResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="modEnterpriseMember" parameterOrder="streamingNo srcDeviceId entCode msisdn">
+  <wsdl:input message="impl:modEnterpriseMemberRequest" name="modEnterpriseMemberRequest" /> 
+  <wsdl:output message="impl:modEnterpriseMemberResponse" name="modEnterpriseMemberResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="delEnterpriseMember" parameterOrder="streamingNo srcDeviceId entCode msisdn">
+  <wsdl:input message="impl:delEnterpriseMemberRequest" name="delEnterpriseMemberRequest" /> 
+  <wsdl:output message="impl:delEnterpriseMemberResponse" name="delEnterpriseMemberResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="addEnterpriseMember" parameterOrder="streamingNo srcDeviceId entCode msisdn">
+  <wsdl:input message="impl:addEnterpriseMemberRequest" name="addEnterpriseMemberRequest" /> 
+  <wsdl:output message="impl:addEnterpriseMemberResponse" name="addEnterpriseMemberResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryEnterprise" parameterOrder="streamingNo srcDeviceId entCode enterpriseInfoHolder">
+  <wsdl:input message="impl:queryEnterpriseRequest" name="queryEnterpriseRequest" /> 
+  <wsdl:output message="impl:queryEnterpriseResponse" name="queryEnterpriseResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="sendSMS" parameterOrder="streamingNo srcDeviceID mSISDNFrom mSISDNTo provinceID mSISDN cnMessage enMessage priority">
+  <wsdl:input message="impl:sendSMSRequest" name="sendSMSRequest" /> 
+  <wsdl:output message="impl:sendSMSResponse" name="sendSMSResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryEnablerURL" parameterOrder="streamingNo srcDeviceID userID userType enablerType retrieveBy enablerURLInfoHolder">
+  <wsdl:input message="impl:queryEnablerURLRequest" name="queryEnablerURLRequest" /> 
+  <wsdl:output message="impl:queryEnablerURLResponse" name="queryEnablerURLResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryServiceUsage" parameterOrder="streamingNo srcDeviceID userID userType queryMonth serviceUsageInfoHolder">
+  <wsdl:input message="impl:queryServiceUsageRequest" name="queryServiceUsageRequest" /> 
+  <wsdl:output message="impl:queryServiceUsageResponse" name="queryServiceUsageResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryConsumption" parameterOrder="streamingNo srcDeviceID userID userType queryMonth consumptionInfoHolder">
+  <wsdl:input message="impl:queryConsumptionRequest" name="queryConsumptionRequest" /> 
+  <wsdl:output message="impl:queryConsumptionResponse" name="queryConsumptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="withdrawAllSubscription" parameterOrder="streamingNo srcDeviceID userID userType sendNotification from withdrawEffectiveDate">
+  <wsdl:input message="impl:withdrawAllSubscriptionRequest" name="withdrawAllSubscriptionRequest" /> 
+  <wsdl:output message="impl:withdrawAllSubscriptionResponse" name="withdrawAllSubscriptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="withdrawOneSubscription" parameterOrder="streamingNo srcDeviceID userID userType PID flag sendNotification from withdrawEffectiveDate">
+  <wsdl:input message="impl:withdrawOneSubscriptionRequest" name="withdrawOneSubscriptionRequest" /> 
+  <wsdl:output message="impl:withdrawOneSubscriptionResponse" name="withdrawOneSubscriptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="querySubscriptionHistory" parameterOrder="streamingNo srcDeviceID userID userType startDate endDate retrieveBy subHistoryInfoListHolder">
+  <wsdl:input message="impl:querySubscriptionHistoryRequest" name="querySubscriptionHistoryRequest" /> 
+  <wsdl:output message="impl:querySubscriptionHistoryResponse" name="querySubscriptionHistoryResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="getSubscription" parameterOrder="streamingNo srcDeviceID userID userType retrieveBy subInfoListHolder">
+  <wsdl:input message="impl:getSubscriptionRequest" name="getSubscriptionRequest" /> 
+  <wsdl:output message="impl:getSubscriptionResponse" name="getSubscriptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="orderService" parameterOrder="streamingNo srcDeviceID initiator initiatorType owner ownerType payer payerType subscribeFrom flag PID effectiveDate expireDate subscribeType serviceOrderInfoHolder">
+  <wsdl:input message="impl:orderServiceRequest" name="orderServiceRequest" /> 
+  <wsdl:output message="impl:orderServiceResponse" name="orderServiceResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="createSubscription" parameterOrder="streamingNo srcDeviceID initiator initiatorType owner ownerType payer payerType subscribeFrom flag PID effectiveDate expireDate subscribeType subscriptionInfoHolder">
+  <wsdl:input message="impl:createSubscriptionRequest" name="createSubscriptionRequest" /> 
+  <wsdl:output message="impl:createSubscriptionResponse" name="createSubscriptionResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryAppealResult" parameterOrder="streamingNo srcDeviceID userID userType appealResultInfoHolder">
+  <wsdl:input message="impl:queryAppealResultRequest" name="queryAppealResultRequest" /> 
+  <wsdl:output message="impl:queryAppealResultResponse" name="queryAppealResultResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="userAppeal" parameterOrder="streamingNo srcDeviceID userID userType appealDes appealInfoHolder">
+  <wsdl:input message="impl:userAppealRequest" name="userAppealRequest" /> 
+  <wsdl:output message="impl:userAppealResponse" name="userAppealResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="modifyUser" parameterOrder="streamingNo srcDeviceID userID userType modifyFrom email passwordQuestion passwordAnswer languagePref">
+  <wsdl:input message="impl:modifyUserRequest" name="modifyUserRequest" /> 
+  <wsdl:output message="impl:modifyUserResponse" name="modifyUserResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="readUser" parameterOrder="streamingNo srcDeviceID userID userType retrieveBy userInfoHolder">
+  <wsdl:input message="impl:readUserRequest" name="readUserRequest" /> 
+  <wsdl:output message="impl:readUserResponse" name="readUserResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="queryPassword" parameterOrder="streamingNo srcDeviceID userID userType retrieveBy passwordInfoHolder">
+  <wsdl:input message="impl:queryPasswordRequest" name="queryPasswordRequest" /> 
+  <wsdl:output message="impl:queryPasswordResponse" name="queryPasswordResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="resetPassword" parameterOrder="streamingNo srcDeviceID userID userType retrieveBy">
+  <wsdl:input message="impl:resetPasswordRequest" name="resetPasswordRequest" /> 
+  <wsdl:output message="impl:resetPasswordResponse" name="resetPasswordResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="modifyPassword" parameterOrder="streamingNo srcDeviceID userID userType oldPassword newPassword modifyBy">
+  <wsdl:input message="impl:modifyPasswordRequest" name="modifyPasswordRequest" /> 
+  <wsdl:output message="impl:modifyPasswordResponse" name="modifyPasswordResponse" /> 
+  </wsdl:operation>
+  <wsdl:operation name="createUser" parameterOrder="streamingNo srcDeviceID userID userType password from email passwordQuestion passwordAnswer languagePref">
+  <wsdl:input message="impl:createUserRequest" name="createUserRequest" /> 
+  <wsdl:output message="impl:createUserResponse" name="createUserResponse" /> 
+  </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PortalEngineDXSoapBindingImplSoapBinding" type="impl:PortalEngineDXSoapBindingImpl">
+  <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" /> 
+  <wsdl:operation name="queryFreeTrial">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryFreeTrialRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryFreeTrialResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="allMemberWithdrawOneSubscription">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="allMemberWithdrawOneSubscriptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="allMemberWithdrawOneSubscriptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="allMemberCreateSubscription">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="allMemberCreateSubscriptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="allMemberCreateSubscriptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryEnterpriseMember">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryEnterpriseMemberRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryEnterpriseMemberResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="modEnterpriseMember">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="modEnterpriseMemberRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="modEnterpriseMemberResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="delEnterpriseMember">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="delEnterpriseMemberRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="delEnterpriseMemberResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="addEnterpriseMember">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="addEnterpriseMemberRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="addEnterpriseMemberResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryEnterprise">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryEnterpriseRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryEnterpriseResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="sendSMS">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="sendSMSRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="sendSMSResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryEnablerURL">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryEnablerURLRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryEnablerURLResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryServiceUsage">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryServiceUsageRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryServiceUsageResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryConsumption">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryConsumptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryConsumptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="withdrawAllSubscription">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="withdrawAllSubscriptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="withdrawAllSubscriptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="withdrawOneSubscription">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="withdrawOneSubscriptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="withdrawOneSubscriptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="querySubscriptionHistory">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="querySubscriptionHistoryRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="querySubscriptionHistoryResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="getSubscription">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="getSubscriptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="getSubscriptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="orderService">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="orderServiceRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="orderServiceResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="createSubscription">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="createSubscriptionRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="createSubscriptionResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryAppealResult">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryAppealResultRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryAppealResultResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="userAppeal">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="userAppealRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="userAppealResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="modifyUser">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="modifyUserRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="modifyUserResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="readUser">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="readUserRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="readUserResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="queryPassword">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="queryPasswordRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="queryPasswordResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="resetPassword">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="resetPasswordRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="resetPasswordResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="modifyPassword">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="modifyPasswordRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="modifyPasswordResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  <wsdl:operation name="createUser">
+  <wsdlsoap:operation soapAction="" /> 
+  <wsdl:input name="createUserRequest">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:input>
+  <wsdl:output name="createUserResponse">
+  <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://webservice.portal.intf.mc.ismp.zznode.com" use="encoded" /> 
+  </wsdl:output>
+  </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PortalEngineDXSoapBindingImplService">
+  <wsdl:port binding="impl:PortalEngineDXSoapBindingImplSoapBinding" name="PortalEngineDXSoapBindingImpl">
+  <wsdlsoap:address location="http://211.144.110.142:7005/webservice/services/PortalEngineDXSoapBindingImpl" /> 
+  </wsdl:port>
+  </wsdl:service>
+  </wsdl:definitions>

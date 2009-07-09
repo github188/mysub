@@ -1,0 +1,33 @@
+#10001~11000：APPLICATION DEFINE，存放在appflds、appflds.h中；
+# NUMBER(10)以上的整数以string形式进行表示
+
+#application defined FML fields
+# name                      number  type    flags   comments
+IRESULT				10001	long	-		处理结果
+SMSG				10002	string	-		处理提示
+IP_ADDR				10003	string	-		IP地址
+OWE_ITEM_CNT			10004	long	-		欠费帐目数
+GET_FLAG			10005	long	-		查询欠费帐目的组合方式
+OWE_BILLING_CYCLE_ID		10006	long	-		欠费帐务周期
+OWE_ACCT_ID			10007	long	-		欠费合同号
+OWE_EXT_SERV_ID			10008	string	-		欠费代收用户标识
+OWE_AREA_CODE			10009	string	-		欠费区号
+OWE_ACC_NBR			10010	string	-		欠费号码
+OWE_ACCT_ITEM_TYPE_ID		10011	long	-		欠费帐目类型
+OWE_CHARGE			10012	long	-		欠费额
+OWE_DUE				10013	long	-		欠费滞纳金
+BILLED				10014	long	-		销帐标志
+BILL_DUE			10015	long	-		要销帐的滞纳金金额
+PAGE_NBR			10017	long	-		页码
+POS_X				10018	long	-		横坐标
+POS_Y				10019	long	-		纵坐标
+PRINT_CONTENT			10020	string	-		打印内容
+BEGIN_DATE			10021	string	-		起始时间
+END_DATE			10022	string	-		结束时间
+FIRST_LOGON_FLAG		10023	long	-		首次登录标志
+OWE_ACC_NBR_CNT			10024	long	-		欠费服务数
+VER				10025	string	-		版本号
+FILE_NAME			10030	string	-		文件名
+FUNDS_GRADE			10040	long	-		预存级别
+LOCAL_AREA_CODE			10041	string	-		本地区号
+CARD_PAY_SERIAL_NBR		10042	string	-		充值平台流水
