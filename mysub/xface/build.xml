@@ -8,9 +8,18 @@
 	</target>
 	
 	<target name="deploy" depends="init">
+		<copy todir="${xface.home}/bin/win32/App/images">
+			<fileset dir="${basedir}/images"/>
+		</copy>
+		<copy todir="${xface.home}/bin/win32/App/script">
+			<fileset dir="${basedir}/script"/>
+		</copy>
+		<copy todir="${xface.home}/bin/win32/App/style">
+			<fileset dir="${basedir}/style"/>
+		</copy>
 		<copy todir="${xface.home}/bin/win32/App">
 			<fileset dir="${basedir}">
-				<include name="**/*.**" />
+				<include name="index.html"/>
 			</fileset>
 		</copy>
 	</target>
