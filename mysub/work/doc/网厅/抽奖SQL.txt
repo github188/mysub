@@ -1,0 +1,127 @@
+登录抽奖SQL:
+
+判断用户本是是否抽过奖:
+
+SELECT * FROM TL_REWARDLOG WHERE PHONENUM=? 
+AND CITYCODE=? AND TYPE='L' 
+AND TO_CHAR(REWARDTIME,'yyyy-MM-dd')=TO_CHAR(SYSDATE,'yyyy-MM-dd')
+
+判断用户本月是否中过奖:
+SELECT * FROM TF_REWARDPOOL WHERE STATE = 'D' 
+AND PHONENUM=? AND CITYCODE = ? 
+AND TO_CHAR(WINNERTIME,'yyyy-MM')=TO_CHAR(SYSDATE,'yyyy-MM') AND TYPE='L'
+
+往日志表里插入抽奖记录:
+INSERT INTO TL_REWARDLOG(rewardlogid,type,rewardtime,phonenum,REWARDCOUNT,citycode)
+VALUES(SEQ_REWARDLOGID.nextval,?,sysdate,?,'E',?)
+
+比对用户是否中奖:
+SELECT * FROM TF_REWARDPOOL WHERE STATE='E'
+ AND TYPE='L' AND winnercount= (
+SELECT count(rewardlogid) FROM TL_REWARDLOG
+ WHERE REWARDCOUNT='E' AND  TYPE='L' AND  TO_CHAR(rewardtime,'yyyy-MM-dd')=TO_CHAR(sysdate,'yyyy-MM-dd')
+)
+AND TO_CHAR(REWARDDATE,'yyyy-MM-dd') = TO_CHAR(sysdate,'yyyy-MM-dd') 
+AND rewardlevel=?
+
+更新奖品池里的记录状态:
+UPDATE TF_REWARDPOOL SET STATE='D',PHONENUM=?,CITYCODE=?,
+RELATIONTEL=?,WINNERTIME=SYSDATE WHERE rewardpoolid=?
+
+*********************************
+充值抽奖
+
+判断号码中奖次数 
+select * from tf_rewarpay t where t.acc_number=? 
+ 
+//将抽奖的信息写到抽奖日志表中 
+insert into tl_rewardlog (rewardlogid, type, rewardtime, phonenum) values (seq_rewardlogid.nextval, 'C', sysdate, ?) 
+ 
+//将用户的抽奖次数减一 
+update tf_rewarpay t set t.rewardcount = t.rewardcount - 1 where t.acc_number = ? 
+ 
+//去抽奖池对应的表中对比用户有没有抽中奖 
+select *
+  from tf_rewardpool p
+ where to_char(p.rewarddate, 'yyyymmdd') = to_char(sysdate, 'yyyymmdd')
+   and p.type = 'C'
+   and p.state = 'E'
+   and p.winnercount =
+       (select count(*)
+          from tl_rewardlog l
+         where l.type = 'C'
+           and to_char(l.rewardtime, 'yyyymmdd') =
+               to_char(sysdate, 'yyyymmdd'))
+ 
+//抽中奖，更新该条记录
+UPDATE TF_REWARDPOOL t SET t.STATE='D',t.PHONENUM=?,t.WINNERTIME=SYSDATE,t.CITYCODE=(select a.citycode from tf_rewarpay a where a.acc_number=?) WHERE t.rewardpoolid=? 
+ 
+//将用户中奖后填写的信息入库
+update tf_rewardpool t set t.name=?, t.sex=?, t.address=?, t.relationtel=?, t.mailnum=? where t.rewardpoolid=? 
+ 
+//根据用户的号码取用户剩余的抽奖次数 
+select a.rewardcount from tf_rewarpay a where a.acc_number=? 
+ 
+//查询中奖信息
+select t.* from tf_rewardpool t where t.state='D' and t.rewarddate >= to_date(?, 'yyyy-mm-dd') and t.rewarddate < to_date(?, 'yyyy-mm-dd') + 1 
+ 
+存储过程pro_reward20090710
+
+
+
+推荐抽奖
+
+
+==根据状态查询推荐数量
+select count(1) from TF_RECNUM
+where  RECCITYCODE= ? and RECPHONE = ? and STATE = ?
+
+
+==查询一个号码推荐号码的总个数
+select count(1) from TF_RECNUM
+where  RECCITYCODE= ? and RECPHONE = ?
+
+==插入推荐的号码
+INSERT INTO TF_RECNUM(RECNUMID,RECPHONE,RECEDNUM,RECTIME,RECCITYCODE,RECEDNUMTYPE)
+ VALUES(seq_recnumid.Nextval,?,?,sysdate,?,?)
+
+==判断用户输入的号码是否被推荐过
+select count(1) from TF_RECNUM
+		   where  RECEDNUMTYPE= ? and RECEDNUM = ? 
+
+
+==判断被推荐的这个号码所在记录是否有机会抽奖
+select count(1) from TF_RECNUM
+where RECEDNUM = ? and STATE = 'E'
+
+
+==插入抽奖日志表
+INSERT INTO TL_REWARDLOG(rewardlogid,type,rewardtime,phonenum,citycode)
+VALUES(seq_rewardlogid.nextval,?,sysdate,?,?)
+
+==判断是否中奖
+SELECT * FROM TF_REWARDPOOL WHERE STATE='E' 
+		 AND TYPE='T' AND winnercount= (
+		SELECT count(rewardlogid) FROM TL_REWARDLOG 
+		WHERE TO_CHAR(rewardtime,'yyyy-MM-dd')=TO_CHAR(sysdate,'yyyy-MM-dd')
+		AND TYPE='T'
+		) 
+	AND TO_CHAR(REWARDDATE,'yyyy-MM-dd') = TO_CHAR(sysdate,'yyyy-MM-dd') 
+	 AND rewardlevel=?
+
+
+==中奖之后更新中将池状态
+UPDATE TF_REWARDPOOL SET STATE='D',PHONENUM=?,CITYCODE=?,
+RELATIONTEL=?,WINNERTIME=SYSDATE WHERE rewardpoolid=?
+
+
+==抽奖之后更新推荐号码状态
+ update TF_RECNUM set state='D' where recednum =? and state = 'E'
+
+==查询推荐列表
+select RECEDNUM,LOGINTIME,STATE from TF_RECNUM"
+			       + " where  RECCITYCODE= ? and RECPHONE = ?
+
+==判断被推荐号码是否是提一次登录后 更新状态
+update TF_RECNUM set recedcitycode=?,state=?,logintime=sysdate where recednum =? and state = 'N' 
+
