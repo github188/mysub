@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webdispatch" basedir="." default="deploy">
+	<property file="build.properties" />
+	<property name="project.name" value="webdispatch" />
+	<property name="lib.dir" value="WebContent/WEB-INF/lib" />
+	<property name="src.dir" value="src" />
+	<property name="src.test.dir" value="test"/>
+	<property name="javac.debug" value="true" />
+	<property name="javac.deprecation" value="false" />
+	<property name="jar.dir" value="exploded-archives/jar" />
+	<property name="war.dir" value="exploded-archives/war" />
+	<property name="dist.dir" value="dist" />
+	<property name="test.dir" value="test-build"/>
+
+	<fileset id="lib" dir="${lib.dir}">
+		<include name="**/*.jar" />
+	</fileset>
+
+	<path id="build.classpath">
+		<fileset refid="lib" />
+	</path>
+
+	<target name="clean" description="clean build enviroment">
+		<delete dir="${basedir}/exploded-archives" />
+		<delete dir="${dist.dir}"/>
+		<delete dir="${test.dir}"/>
+		<mkdir dir="${jar.dir}"/>
+		<mkdir dir="${war.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+		<mkdir dir="${test.dir}"/>
+	</target>
+
+	<target name="compile" depends="clean" description="compile the java source code">
+		<javac classpathref="build.classpath" destdir="${jar.dir}" debug="${javac.debug}" deprecation="${javac.deprecation}" nowarn="on">
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+
+	<target name="war" depends="compile" description="Build the distribution war module">
+		<copy todir="${war.dir}/WEB-INF">
+			<fileset dir="WebContent/WEB-INF">
+				<include name="web.xml" />
+				<include name="weblogic.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${war.dir}/WEB-INF/lib">
+			<fileset dir="${lib.dir}">
+				<include name="**/*.jar" />
+				<exclude name="weblogic.jar" />
+				<exclude name="junit.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="${war.dir}/WEB-INF/classes">
+			<fileset dir="${jar.dir}">
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="archive" depends="war" description="Archive target to war module">
+		<jar destfile="${dist.dir}/${project.name}.jar" basedir="${jar.dir}" />
+		<jar destfile="${dist.dir}/${project.name}.war" basedir="${war.dir}" />
+	</target>
+
+	<target name="deploy" depends="archive" description="Deploy war module to weblogic">
+		<delete>
+			<fileset dir="${bea_home}/user_projects/domains/${domain_name}/applications">
+				<include name="*.war" />
+			</fileset>
+		</delete>
+		<copy todir="${bea_home}/user_projects/domains/${domain_name}/applications">
+			<fileset dir="${dist.dir}">
+				<include name="${project.name}.war" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="compiletest" depends="clean" description="Compile java test code">
+		<javac classpathref="build.classpath" destdir="${test.dir}" debug="${javac.debug}" 
+			deprecation="${javac.deprecation}" nowarn="on">
+			<src path="${src.test.dir}"/>
+		</javac>
+	</target>
+	
+	<target name="runtest" depends="compiletest" description="Run junit test">
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath refid="build.classpath"/>
+			<classpath>
+				<pathelement location="${test.dir}"/>
+			</classpath>
+			<formatter type="plain"/>
+			<batchtest todir="${test.dir}">
+				<fileset dir="${src.test.dir}">
+					<include name="**/*Test*.java"/>
+					<exclude name="**/AllTests.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	
+	
+</project>
