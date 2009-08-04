@@ -90,23 +90,35 @@ function createProcessDiv(fee){
    div3.style.width = "400px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
-   div2.appendChild(div3);
    
-   var div4 = document.createElement("div");
-   div4.style.height="60px";
-   div4.style.marginTop="3px";
-    div4.style.width="400px";
+   var div31 = document.createElement("div");
+   div31.style.width = "400px";
+   div31.style.margin = "auto";
+   div31.style.height = "50px";
+   div31.appendChild($ct("您目前的帐户明细如下："));
+    div2.appendChild(div3);
+   div2.appendChild(div31);
    
    var date = new Date();
-   var textNode2 = $ct("  截止本月"); 
+   
+   var div4 = document.createElement("div");
+   div4.style.height="30px";
+   div4.style.marginTop="3px";
+   div4.style.width="400px";
+   var textNode2 = $ct("手机号码："); 
    div4.appendChild(textNode2);
-   div4.appendChild($ct(date.getDate()));
-   div4.appendChild($ct("日，您号码为"));
    div4.appendChild($ct(fee.accNbr));
-   div4.appendChild($ct("的余额情况如下:"));
    div2.appendChild(div4);
+   
+   var div41 = document.createElement("div");
+   div41.style.height="30px";
+   div41.style.marginTop="3px";
+   div41.style.width="400px";
+   div41.appendChild($ct("抽奖日期："));
+   div41.appendChild($ct(date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日"));
+   div2.appendChild(div41);
  
    var div5 = document.createElement("div");
        div5.style.marginTop = "3px";
@@ -115,9 +127,9 @@ function createProcessDiv(fee){
        div6.style.height = "30px";
    var div7 = document.createElement("div");
        div7.style.height = "30px";
-   var textNode3 = document.createTextNode("当前可用余额为：");
-   var textNode5 = document.createTextNode("当月欠费："); 
-   var textNode6 = document.createTextNode("当月消费：");
+   var textNode3 = document.createTextNode("可用余额：");
+   var textNode5 = document.createTextNode("本月消费："); 
+   var textNode6 = document.createTextNode("本月欠费：");
    var span = document.createElement("span");
    var span1 = document.createElement("span");
    var span2 = document.createElement("span");
@@ -140,8 +152,9 @@ function createProcessDiv(fee){
    div7.appendChild(span2);
    div7.appendChild(textNode8);
    div2.appendChild(div5);
-   div2.appendChild(div6);
+   
    div2.appendChild(div7);
+   div2.appendChild(div6);
    
    
    var div8 = $c("div");
@@ -290,7 +303,7 @@ function showBillPage(data){
    div3.style.width = "370px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("  尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -319,18 +332,20 @@ function showBillPage(data){
    for(var i=0;i<c;i++){
    	 var div5 = $c("div");
      var textNode3 = $ct(obj[i].acctItemType);
-     var textNode4 = $ct($f(obj[i].amount));
-     var textNode5 = $ct("  ");
      div5.appendChild(textNode3);
-     div5.appendChild(textNode5);
-     div5.appendChild(textNode4);
-     div5.appendChild($ct("元"));
+     var sp = $c("span");
+		sp.appendChild($ct($f(obj[i].amount)+"元"));
+		sp.style.position = "absolute";
+		sp.style.top = i*25+63+"px";
+		sp.style.left = "270px";
+		div5.appendChild(sp);
+     
      div5.style.fontSize = "25px";
      div2.appendChild(div5);
-     if(i==(obj.length-1)){
+     if(i==(c-1)){
        var d = $c("div");
        d.appendChild($ct("总费用"));
-       d.appendChild($ct(" "));
+       d.appendChild($ct("              "));
        d.appendChild($ct($f(fee.totalAmount)));
        d.appendChild($ct("元"));
        d.style.fontSize = "25px";
@@ -431,7 +446,7 @@ function showIsmpPage(data){
    div3.style.width = "440px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -440,7 +455,7 @@ function showIsmpPage(data){
    div4.style.marginTop="3px";
     div4.style.width="440px";
     
-   var textNode2 = document.createTextNode("  以下是可订制增值业务:");
+   var textNode2 = document.createTextNode("以下是可定置增值业务:");
    div4.appendChild(textNode2);
    div2.appendChild(div4);
    var c =data.length;
@@ -452,7 +467,12 @@ function showIsmpPage(data){
 		   div5.style.height="40px";
 		   div5.appendChild($ct(data[i].displayName));
 		   div5.appendChild($ct(" "));
-		   div5.appendChild($ct(data[i].value));
+		   var span = $c("span");
+		   span.appendChild($ct(data[i].value));
+		   span.style.position = "absolute";
+		   span.style.top = i*39+65+"px";
+		   span.style.left = "220px";
+		   div5.appendChild(span);
 		    var img = $c("img");
 		    img.style.position = "absolute";
 		    img.style.top = i*38+65+"px";
@@ -656,7 +676,7 @@ function showResultPage(msg){
    div3.style.width = "420px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -667,7 +687,7 @@ function showResultPage(msg){
    div4.style.height="400px";
     var date   = new Date();
    var text = date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日";
-   var textNode2 = document.createTextNode("  您已经于"+text+"成功订制本套餐业务。");
+   var textNode2 = document.createTextNode("  您已经于"+text+"成功定置本套餐业务。");
    div4.appendChild(textNode2);
    div2.appendChild(div4);
    
@@ -734,45 +754,62 @@ function showBusiPage(data){
    div2.style.fontWeight = fontw;
    div.appendChild(div2);
    
-   var div3 = document.createElement("div");
-   div3.style.width = "370px";
-   div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
-   div3.appendChild(textNode1);
-   div2.appendChild(div3);
    
-   var div4 = document.createElement("div");
-   div4.style.height="30px";
-   div4.style.marginTop="3px";
-    div4.style.width="370px";
-
-   var textNode2 = document.createTextNode("以下是您订制的业务信息");
-   div4.appendChild(textNode2);
-   div2.appendChild(div4);
-   if(data=="[]"){
-     var div5 = document.createElement("div");
-     div5.appendChild($ct("   您没有已订制增值业务。"));
-     div2.appendChild(div5);
+   
+   if(data==""){
+   	   var div3 = document.createElement("div");
+	   div3.style.width = "370px";
+	   div3.style.height = "60px";
+	   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
+	   div3.appendChild(textNode1);
+	   div2.appendChild(div3);
+	   
+	   var div4 = document.createElement("div");
+	   div4.style.height="30px";
+	   div4.style.marginTop="3px";
+	    div4.style.width="370px";
+	
+	   var textNode2 = document.createTextNode("  您当前没有定制的业务。");
+	   div4.appendChild(textNode2);
+	   div2.appendChild(div4);
    }else{
-     for(var i=0;i<data.length;i++){
-     var div5 = document.createElement("div");
-     div5.appendChild($ct(data[i].displayName));
-     div5.appendChild($ct(" "));
-     div5.appendChild($ct(data[i].value));
-    var img = $c("img");
-    img.setAttribute("src","images/td.png");
-    img.setAttribute("id","images-"+i);
-    img.style.width="10px";
-    img.style.height="3px";
-    img.style.border="0";
-     
-    div5.appendChild(img);
-   
-    img.addEventListener('click',function(event)
-			{removeNowPage();cancelIsmp(event.target.getAttribute("id"),data);}, true);
-    div2.appendChild(div5);
+	   var div3 = document.createElement("div");
+	   div3.style.width = "370px";
+	   div3.style.height = "30px";
+	   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
+	   div3.appendChild(textNode1);
+	   div2.appendChild(div3);
+	   
+	   var div4 = document.createElement("div");
+	   div4.style.height="30px";
+	   div4.style.marginTop="3px";
+	    div4.style.width="370px";
+	
+	   var textNode2 = document.createTextNode("以下是您订制的业务信息");
+	   div4.appendChild(textNode2);
+	   div2.appendChild(div4);
+	   for(var i=0;i<data.length;i++){
+		   var div5 = document.createElement("div");
+		   div5.appendChild($ct(data[i].displayName));
+		   div5.appendChild($ct(" "));
+		   div5.appendChild($ct(data[i].value));
+		    var img = $c("img");
+		    img.setAttribute("src","images/td.png");
+		    img.setAttribute("id","images-"+i);
+		    img.style.width="10px";
+		    img.style.height="3px";
+		    img.style.border="0";
+		    
+		     
+		    div5.appendChild(img);
+		   
+		    img.addEventListener('click',function(event)
+					{removeNowPage();cancelIsmp(event.target.getAttribute("id"),data);}, true);
+		    div2.appendChild(div5);
+	   }
    }
-  }
+   
+  
   
    
    var div8 = $c("div");
@@ -848,7 +885,7 @@ function showResult1Page(){
    div3.style.width = "400px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -934,7 +971,7 @@ function showSelectPage(){
    var div3 = document.createElement("div");
    div3.style.width = "420px";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -1067,7 +1104,7 @@ function showErrorMsgPage(msg){
    div3.style.width = "310px";
    div3.style.margin = "auto";
    div3.style.height = "18px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -1135,7 +1172,7 @@ $("container").style.backgroundImage = "url(images/w.png)";
    div3.style.width = "420px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
@@ -1194,7 +1231,7 @@ function changePage(mode,div){
    div3.style.width = "440px";
    div3.style.margin = "auto";
    div3.style.height = "30px";
-   var textNode1 = document.createTextNode("尊敬的客户:");
+   var textNode1 = document.createTextNode("  尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    divParent.appendChild(div3);
    
@@ -1219,19 +1256,20 @@ function changePage(mode,div){
    for(var i=0;i<arry.length;i++){
    	 var div5 = $c("div");
      var textNode3 = $ct(arry[i].acctItemType);
-
-     var textNode4 = $ct($f(arry[i].amount));
-     var textNode5 = $ct(" ");
      div5.appendChild(textNode3);
-     div5.appendChild(textNode5);
-     div5.appendChild(textNode4);
-     div5.appendChild($ct("元"));
      div5.style.fontSize = "25px";
+     var sp = $c("span");
+		sp.appendChild($ct($f(arry[i].amount)+"元"));
+		sp.style.position = "absolute";
+		sp.style.top = i*25+63+"px";
+		sp.style.left = "270px";
+		div5.appendChild(sp);
+     
      divParent.appendChild(div5);
      if(i==(arry.length-1)){
        var d = $c("div");
        d.appendChild($ct("总费用"));
-       d.appendChild($ct(" "));
+       d.appendChild($ct("              "));
 	   
        d.appendChild($ct($f(billFee.totalAmount)));
        d.appendChild($ct("元"));
@@ -1290,63 +1328,6 @@ function createChangePage(arry,mode,index){
   }
 }
 
-
-
-function removeMainPage(pram){
-   $("container").removeChild($("menu"));
-}
-function removeProcessPage(){
-  $("container").removeChild($("menuPro"));
-
-}
-
-function removeIsmpPage(){
-  $("container").removeChild($("menuIsmp"));
-
-}
-
-function removeBillPage(){
-  var con = $("container");
-  while (con.firstChild) {
-            var oldNode = con.removeChild(con.firstChild);
-                oldNode = null;
-   }
-}
-
-function removeMsgPage(){
-  var con = $("container");
-  while (con.firstChild) {
-            var oldNode = con.removeChild(con.firstChild);
-                oldNode = null;
-   }
-}
-
-function removeResultPage(){
-  $("container").removeChild($("menuResult"));
-}
-
-function removeResult1Page(){
-  $("container").removeChild($("menuResult1"));
-
-}
-
-function removeBusiPage(){
-  var con = $("container");
-  while (con.firstChild) {
-            var oldNode = con.removeChild(con.firstChild);
-                oldNode = null;
-   }
-}
-
-function removeSelectPage(){
-  $("container").removeChild($("menuSelect"));
-
-}
-
-function removeErrorMsgPage(){
-  $("container").removeChild($("menuError"));
-
-}
 
 function onload(){
 	var accnbr = $getCookie("ACCNBR");

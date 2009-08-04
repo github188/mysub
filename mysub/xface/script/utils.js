@@ -131,13 +131,31 @@ function $getRequestObject(){
 
 function $getRemoteData(url, callback, sync){
 	var xmlRequest = new XMLHttpRequest();
-		xmlRequest.callback = callback;
-		xmlRequest.onreadystatechange = function(){
-			if(this.readyState == 4) this.callback(this.responseText);
-		}
-		xmlRequest.open("GET", url, sync);
-		xmlRequest.send(null);
-		//if(sync) callback(xmlRequest);
+		var text = "F";
+		setTimeout(function(){
+				callback(text);
+			},10000);
+		  // xmlRequest.callback = callback;
+			xmlRequest.onreadystatechange = function(){
+				if(this.readyState == 4) 
+				//this.callback(this.responseText);
+				text = this.responseText;
+			}
+			xmlRequest.open("GET", url, sync);
+			xmlRequest.send(null);
+			
+			
+			
+
+		
+		
+			 //xmlServerHttp.setTimeouts(lResolve, lConnect, lSend, lReceive);
+			//所有参数为毫秒值
+          //lResolve: DNS主机名解析超时。 缺省为0，表示无限等待
+        //lConnect：连接超时。  缺省为60秒
+        //lSend：   发送数据超时。 缺省为5分钟
+        //lReceive：接收数据超时。 缺省为60分钟
+	
 }
 
 function $setInnerText(container, txt){
