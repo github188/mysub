@@ -1,4 +1,4 @@
-var divMainHeight = "240px"; /*CONTAINER里包含的DIV的高度*/
+﻿var divMainHeight = "240px"; /*CONTAINER里包含的DIV的高度*/
 var divMainWidth  = "240px";/*CONTAINER里包含的DIV的宽度*/
 var fontFamily = "微软雅黑";
 var fontsize = "large";
@@ -106,11 +106,32 @@ function showSelectPage(){
    
    var date = new Date();
    var year = date.getFullYear();
-   var month = date.getMonth();
+   var month = date.getMonth()+1;
+   var year1 = 0;
+   var year2 = 0;
+
+   var num1 = 0;
+   var num2 = 0;
+   if(month==1){
+      num1 = 12;
+      num2 = 11;
+	  year1 = year-1;
+      year2 = year-1;
+   }else if(month==2){
+      num1 = 1;
+      num2 = 12;
+	  year1 = year;
+      year2 = year-1;
+   }else{
+      num1 = month-1;
+	  num2 = month-2;
+	  year1 = year;
+      year2 = year;
+   }
    
    var text1= year+"年"+month+"月";
-   var text2= year+"年"+(month-1)+"月";
-   var text3= year+"年"+(month-2)+"月";
+   var text2= year1+"年"+num1+"月";
+   var text3= year2+"年"+num2+"月";
    
    var div5 = document.createElement("div");
    div5.style.height="15px";
@@ -143,8 +164,8 @@ function showSelectPage(){
    }
    
    div5.addEventListener('click', function () {removeNowPage();getBill(year+""+(month+"")) }, true);
-   div6.addEventListener('click', function () {removeNowPage();getBill(year+""+(num1+"")) }, true); 
-   div7.addEventListener('click', function () {removeNowPage();getBill(year+""+(num2+"")) }, true);  
+   div6.addEventListener('click', function () {removeNowPage();getBill(year1+""+(num1+"")) }, true); 
+   div7.addEventListener('click', function () {removeNowPage();getBill(year2+""+(num2+"")) }, true);  
   
    div5.appendChild(textNode3);
    div6.appendChild(textNode4);
@@ -862,10 +883,11 @@ function showResultPage(msg){
 function showBusiPage(data){
    data = $parseJson(data);
    
- //  if(data==null||data==""){
-  //	 showErrorPage("  很抱歉，暂时不能办理该项业务，请您稍后再试。");
-	// return;
- // }
+
+ if(data==null){
+	showErrorPage("  很抱歉，暂时不能办理该项业务，请您稍后再试。");
+	return;
+ }
   $("container").style.backgroundImage = "url(images/bjjjjj1.png)";
 
    var divv = $c("div");
@@ -935,7 +957,7 @@ function showBusiPage(data){
 	   div4.style.marginTop="3px";
 	    div4.style.width="220px";
 	
-	   var textNode2 = document.createTextNode("以下是您订制的业务信息:");
+	   var textNode2 = document.createTextNode("以下是您定制的业务信息:");
 	   div4.appendChild(textNode2);
 	   div2.appendChild(div4);
 	   

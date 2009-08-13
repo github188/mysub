@@ -116,7 +116,7 @@ function createProcessDiv(fee){
    div41.style.height="30px";
    div41.style.marginTop="3px";
    div41.style.width="400px";
-   div41.appendChild($ct("抽奖日期："));
+   div41.appendChild($ct("查询日期："));
    div41.appendChild($ct(date.getFullYear()+"年"+(date.getMonth()+1)+"月"+date.getDate()+"日"));
    div2.appendChild(div41);
  
@@ -257,6 +257,10 @@ function showBillPage(data){
    		return;
    }
    var fee =  $parseJson(data);
+   if(fee==null){
+		showErrorMsgPage("  很抱歉，暂时不能办理该项业务，请您稍后再试。");
+   		return;
+   }
    //if($("menuBill")){
    //	  $("container").appendChild($("menuBill"));
    //}else {
@@ -402,7 +406,7 @@ function showIsmpPage(data){
    //data = "[{\"displayName\":\"财经新闻test\",\"introduction\":\"【财经新闻定制类】每个国内股市交易日，由网易财经编辑精心选择对沪深股市有重大影响的财经新闻信息，包括政策引导，股市波动等内容，为股民提供大环境信息。\",\"otherSystemId\":\"135000000000000000837\",\"value\":\"99元/月\"},{\"displayName\":\"财经新闻\",\"introduction\":\"【财经新闻定制类】每个国内股市交易日，由网易财经编辑精心选择对沪深股市有重大影响的财经新闻信息，包括政策引导，股市波动等内容，为股民提供大环境信息。\",\"otherSystemId\":\"135000000000000000837\",\"value\":\"5元/月\"},{\"displayName\":\"超级QQ\",\"introduction\":\"超级QQ是为不方便上网的，手机不离身的用户量身打造的一款结合QQ使用和手机特权VIP的短信增值业务。用户开通业务后，可用手机实在QQ24小时在线，接收贴心短信提醒等20多项功能，同时享有抢先体验腾讯最新的手机软件，手机游戏的特权，让您成为时尚精明的手机潮人。\",\"otherSystemId\":\"135000000000000000773\",\"value\":\"10元/月\"},{\"displayName\":\"短信百事通\",\"introduction\":\"对手机用户在生活工作中遇-需要即时查询的资讯问题，通过完善的人工座席平台，对短信提问进行即时的人工多渠道查询，并以短信的方式迅速作答。\",\"otherSystemId\":\"135000000000000001801\",\"value\":\"10元/月\"},{\"displayName\":\"新闻冲浪\",\"introduction\":\"综合国内、国际、体育、财经、娱乐、科技等各类重大突发事件，用户可以及时知道讯息万千的世界，掌控全球的各类新闻。\",\"otherSystemId\":\"135000000000000001059\",\"value\":\"8元/月\"},{\"displayName\":\"个人信息管理\",\"introduction\":\"个人信息管理（备份PIM产品）是一项帮助您方便转移和备份手机个人通信录的业务。\",\"otherSystemId\":\"135000000000000000467\",\"value\":\"3元/月\"}]";
    data = $parseJson(data);
    if(data==null||data==""){
-  	  showErrorPage("  很抱歉，暂时不能办理该项业务，请您稍后再试。");
+  	  showErrorMsgPage("  很抱歉，暂时不能办理该项业务，请您稍后再试。");
 	  return;
    }
    $("container").style.backgroundImage = "url(images/bjjj.png)";
@@ -597,7 +601,7 @@ function showMsgPage(id,data){
    var img3 = $c("img");
    img3.setAttribute("src","images/kt.png");
    img3.style.position = "absolute";
-   img3.style.left = "175px";
+   img3.style.left = "194px";
    img3.style.top = "300px";
    img3.style.cursor = "pointer";
    img3.addEventListener('click', function () {removeNowPage();setIsmp(otherid,name); }, true); 
@@ -721,6 +725,10 @@ function showResultPage(msg){
 /**业务信息*/
 function showBusiPage(data){
    data = $parseJson(data);
+   if(data==null){
+  	  showErrorMsgPage("  很抱歉，暂时不能办理该项业务，请您稍后再试。");
+	  return;
+   }
    $("container").style.backgroundImage = "url(images/bjjjjj.png)";
    var divv = $c("div");
    divv.setAttribute("id","menuBusi");
@@ -785,7 +793,7 @@ function showBusiPage(data){
 	   div4.style.marginTop="3px";
 	    div4.style.width="370px";
 	
-	   var textNode2 = document.createTextNode("以下是您订制的业务信息");
+	   var textNode2 = document.createTextNode("以下是您定制的业务信息");
 	   div4.appendChild(textNode2);
 	   div2.appendChild(div4);
 	   for(var i=0;i<data.length;i++){
@@ -986,13 +994,34 @@ function showSelectPage(){
    
    var date = new Date();
    var year = date.getFullYear();
-   var month = date.getMonth();
-   var text1= year+"年"+month+"月";
-   var text2= year+"年"+(month-1)+"月";
-   var text3= year+"年"+(month-2)+"月";
+   var month = date.getMonth()+1;
+   var year1 = 0;
+   var year2 = 0;
+
+   var num1 = 0;
+   var num2 = 0;
+   if(month==1){
+      num1 = 12;
+      num2 = 11;
+	  year1 = year-1;
+      year2 = year-1;
+   }else if(month==2){
+      num1 = 1;
+      num2 = 12;
+	  year1 = year;
+      year2 = year-1;
+   }else{
+      num1 = month-1;
+	  num2 = month-2;
+	  year1 = year;
+      year2 = year;
+   }
    
-   var num1 = month-1;
-   var num2 = month-2;
+   var text1= year+"年"+month+"月";
+   var text2= year1+"年"+num1+"月";
+   var text3= year2+"年"+num2+"月";
+
+   
    if(month<10){
       month = "0"+(month+"");
    }
@@ -1023,8 +1052,8 @@ function showSelectPage(){
    
    
    div5.addEventListener('click', function () {removeNowPage();getBill(year+""+(month+"")) }, true);
-   div6.addEventListener('click', function () {removeNowPage();getBill(year+""+(num1+"")) }, true); 
-   div7.addEventListener('click', function () {removeNowPage();getBill(year+""+(num2+"")) }, true);  
+   div6.addEventListener('click', function () {removeNowPage();getBill(year1+""+(num1+"")) }, true); 
+   div7.addEventListener('click', function () {removeNowPage();getBill(year2+""+(num2+"")) }, true);  
   
    div5.appendChild(textNode3);
    div6.appendChild(textNode4);
@@ -1060,7 +1089,7 @@ function showSelectPage(){
 
 
 function showErrorMsgPage(msg){
-
+   $("container").style.backgroundImage = "url(images/ts.png)";
    if($("menuError")){
    	  $("container").appendChild($("menuError"));
    }else {
@@ -1089,7 +1118,7 @@ function showErrorMsgPage(msg){
    div2.style.fontWeight = "bold";
    div2.style.fontFamily = fontFamily;
    div2.style.fontSize = fontSize;
-   div2.style.width="310px";
+   div2.style.width="480px";
    div2.style.position = "absolute";
    div2.style.top = "60px";
    div2.style.margin="auto";
@@ -1097,35 +1126,49 @@ function showErrorMsgPage(msg){
    div2.style.height="350px";
    div2.style.paddingLeft="4px";
    div2.style.paddingRight="4px";
-   div2.style.overflow = "scroll";
+   div2.style.color = fontcolor;
+   div2.style.fontSize = fontsize;
+   div2.style.fontWeight = fontw;
    div.appendChild(div2);
    
    var div3 = document.createElement("div");
-   div3.style.width = "310px";
+   div3.style.width = "480px";
    div3.style.margin = "auto";
-   div3.style.height = "18px";
+   div3.style.height = "50px";
    var textNode1 = document.createTextNode("尊敬的电信用户，您好！");
    div3.appendChild(textNode1);
    div2.appendChild(div3);
    
    var div4 = document.createElement("div");
-   div4.style.height="33px";
+   div4.style.height="100px";
    div4.style.marginTop="3px";
-    div4.style.width="300px";
+    div4.style.width="410px";
 
    var textNode2 = document.createTextNode(msg);
    div4.appendChild(textNode2);
    div2.appendChild(div4);
    
   
-   var img2 = document.createElement("img");
-   img2.setAttribute("src","images/x.png");
-   img2.style.position = "absolute";
-   img2.style.top = "350px";
-   img2.style.left = "220px";
-   img2.style.cursor = "pointer";
-   img2.addEventListener('click', function () {removeNowPage();$("container").appendChild($("menu")) }, true);    
-   div.appendChild(img2);
+   var div8 = $c("div");
+   var div9 = $c("div");
+   div8.appendChild($ct("  上一页"));
+   div9.appendChild($ct(" 首 页"));
+   div8.style.fontSize = fontsize;
+   div9.style.fontSize = fontsize;
+   div8.style.position = "absolute";
+   div9.style.position = "absolute";
+   div8.style.top = "413px";
+   div8.style.left = "80px";
+   div8.style.color = "white";
+   div9.style.top = "413px";
+   div9.style.left = "270px";
+   div9.style.color = "white";
+   div8.style.cursor = "pointer";
+   div9.style.cursor = "pointer";
+   div8.addEventListener('click', function () {removeNowPage();showMainPage() }, true);  
+   div9.addEventListener('click', function () {removeNowPage();showMainPage() }, true);    
+   div.appendChild(div8);
+   div.appendChild(div9);
    divv.appendChild(div);
    $("container").appendChild(divv);
    }
