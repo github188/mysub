@@ -1,0 +1,286 @@
+@charset "utf-8";
+A:link {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+A:visited {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+A:hover {
+	font-size: 12px;
+	color: #FF0000; 
+	text-decoration:underline;
+}
+body  {
+	font: 100% 宋体, 新宋体;
+	font-size: 12px;
+	background: #fff;
+	margin: 0; /* 最好将 body 元素的边距和填充设置为 0 以覆盖不同的浏览器默认值 */
+	padding: 0;
+	text-align: center; /* 在 IE 5* 浏览器中，这会将容器居中。文本随后将在 #container 选择器中设置为默认左对齐 */
+	color: #000000;
+}
+div,form,img,ul,ol,li,dl,dt,dd {margin: 0; padding: 0; border: 0; }
+li{list-style-type:none;
+float:left;}
+img{vertical-align:top;}
+
+#top_header  {
+	background:url(../images/bg.gif) 0  -0px  ;/*1*/
+	width: 100%;
+	margin: 0 auto; /* 自动边距（与宽度一起）会将页面居中 */
+	border: 0px;
+	text-align: left; /* 这将覆盖 body 元素上的“text-align: center”。 */
+	height: 44px;
+}
+#logo_ct{
+	background:url(../images/bg.gif) 0 -44px no-repeat;/*2*/
+	height: 44px;
+	width: 254px;
+}
+#logo_10000{
+	background:url(../images/bg.gif) 0 -88px repeat;/*3*/
+	float: right;
+	height: 44px;
+	width: 163px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+#container  { 
+	position: relative; /* 添加“position: relative”允许您将两个侧栏相对于此容器放置 */
+	width: 986px;  /* 使用比最大宽度 (800px) 小 20px 的宽度可显示浏览器界面元素，并避免出现水平滚动条 */
+	background: #FFFFFF;
+	margin: 0 auto; /* 自动边距（与宽度一起）会将页面居中 */
+	text-align: left; /* 这将覆盖 body 元素上的“text-align: center”。 */
+} 
+/* 具有标题和脚注的绝对定位侧栏的提示：
+1. 必须为绝对定位 (AP) 元素指定顶部边距和侧边距（左边距或右边距）。默认情况下，如果未指定顶部边距，则 AP 元素将紧跟页面源代码中的前一个元素之后出现。这意味着，如果在文档的源代码顺序中，侧栏是 #container 中的第一个元素，那么，即使未提供顶部边距值，侧栏也将出现在 #container 的顶端。但是，如果它们的源代码顺序之后由于任何原因而移动，就需要具有顶部边距值，才能显示在所需的位置。
+2. 绝对定位 (AP) 元素已从文档流中去除。这意味着绝对定位元素周围的元素不知道它们是否存在，在占据合理的页面空间时不会考虑它们。因此，如果您确信大部分内容将总是包含在中间的 #mainContent div 中，则只应当将 AP div 用作侧栏。如果任一侧栏中将包含更多的内容，则该侧栏将超出父 div（在本例中父 div 同时还为脚注）的底部，此时侧栏会看起来没有被完全包含进来。
+3. 如果满足了上述要求，则可以使用绝对定位侧栏来方便地控制文档的源代码顺序。
+4. 如果源代码顺序发生变化，则顶部边距值应当等于标题的高度，因为这将使得这些栏与标题在视觉上对齐。
+*/
+#header  {
+	background:url(../images/bg.gif) 0 -695px repeat;/*16*/
+	height: 267px; /* 如果要更改栏的源代码顺序，则可能需要使用标题的高度，以便可以为栏提供可预测的顶部边距值 */
+	padding: 0 0 0 0;  /* 此填充会将出现在它后面的 div 中的元素左对齐。如果 #header 中使用的是图像（而不是文本），您最好删除填充。 */
+}
+#header_logo1  {
+	background:url(../images/bg.gif) 0 -132px repeat;/*4*/
+	float: left;
+	height: 89px;
+	width: 284px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#header_logo2  {
+	background:url(../images/bg.gif) 0 -221px repeat;/*5*/
+	float: right;
+	width: 173px;
+	height: 59px;
+	position: absolute;
+	top: 0px;
+	right: 0px;} 
+#header_nav1  {
+	background:url(../images/bg.gif) 0 -280px repeat;/*5*/
+	float: right;
+	width: 135px;
+	height: 33px;
+	position: absolute;
+	top: 56px;
+	left: 285px;
+} 
+#header_nav2  {
+	background:url(../images/bg.gif) 0 -369px repeat;/*9*/
+	width: 283px;
+	height: 23px;
+	position: absolute;
+	top: 60px;
+	left: 428px;
+	padding-top: 10px;
+	padding-left: 20px;
+	margin: 0;
+} 
+
+#public_kuang_L  {
+	background:url(../images/bg.gif) 0 -313px repeat;/*7*/
+	float: right;
+	width: 3px;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#public_kuang_R  {
+	background:url(../images/bg.gif) 0 -341px repeat;/*8*/
+	float: right;
+	width: 3px;
+	height: 28px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	
+} 
+#header_nav3  {
+	background:url(../images/bg.gif) 0 -369px repeat;/*9*/
+	float: right;
+	width: 226px;
+	height: 23px;
+	position: absolute;
+	top: 60px;
+	right: 6px;
+	padding-top: 10px;
+	padding-left: 15px;
+} 
+#header_subNav  {
+	background:url(../images/bg.gif) 0 -555px repeat;/*12*/
+	float: right;
+	width: 986px;
+	height: 74px;
+	position: absolute;
+	top: 88px;
+	right: 673px;
+	padding-top: 5px;
+	left: 0px;
+} 
+#header_subNav_kuang_L  {
+	background:url(../images/bg.gif) 0 -397px repeat;/*10*/
+	float: right;
+	width: 4px;
+	height: 79px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+#header_subNav_kuang_R  {
+	background:url(../images/bg.gif) 0 -476px repeat;/*11*/
+	float: right;
+	width: 4px;
+	height: 79px;
+	position: absolute;
+	top: 0px;
+	right: 0px
+}
+#header_subNav_1  {
+	float: right;
+	width: 542px;
+	height: 16px;
+	position: absolute;
+	top: 11px;
+	right: 673px;
+	padding-top: 5px;
+	left: 26px;
+}
+#header_subNav_1 A:link {
+	font-size: 12px;
+	color: #fff;
+	text-decoration: none;
+}
+#header_subNav_1 A:visited {
+	font-size: 12px;
+	color: #fff;
+	text-decoration: none;
+}
+
+#header_subNav_1 A:hover {
+	font-size: 12px;
+	color: #FFFF00; 
+	text-decoration:underline;
+}
+.header_subNav_1_menuDiv {
+	background:url(../images/bg.gif) 0 -634px repeat;/*13*/
+	width:27px;
+	height:11px;
+	margin-left: 15px;
+	margin-top:1px;
+	margin-right: 15px;
+}
+#header_subNav_2  {
+	background:url(../images/bg.gif) 0 -645px repeat;/*14*/
+	float: left;
+	width: 73px;
+	height: 25px;
+	position: absolute;
+	top: 9px;
+	left: 876px;
+} 
+#header_subNav_3  {
+	float: right;
+	width: 61px;
+	height: 24px;
+	position: absolute;
+	top: 55px;
+	right: 673px;
+	left: 29px;
+} 
+#header_subNav_4  {
+	float: right;
+	width: 387px;
+	height: 32px;
+	position: absolute;
+	top: 42px;
+	right: 673px;
+	padding-top: 5px;
+	left: 93px;
+} 
+#header_subNav_5  {
+	float: right;
+	width: 409px;
+	height: 24px;
+	position: absolute;
+	top: 55px;
+	right: 673px;
+	left: 544px;
+} 
+#header_subNav_5 A:link {
+	font-size: 12px;
+	color: #666666;
+	text-decoration: none;
+}
+#header_subNav_5 A:visited {
+	font-size: 12px;
+	color: #666666;
+	text-decoration: none;
+}
+
+#header_subNav_5 A:hover {
+	font-size: 12px;
+	color: #FFFF00; 
+	text-decoration:underline;
+}
+#header h1  {
+	margin: 0; /* 将 #header div 中最后一个元素的边距设置为零将避免边距重叠（即 div 之间出现的无法解释的空白）。如果 div 周围有边框，则不必将边距设置为零，因为边框也会避免边距重叠 */
+	padding: 10px 0; /* 使用填充而不使用边距将可以使元素远离 div 的边缘 */
+}
+#MainBody{
+}
+#Footer{}
+
+.menuDiv {
+	width:1px;
+	height:10px;
+	background:#999;
+	margin-left: 10px;
+	margin-top:1px;
+	margin-right: 10px;
+	}
+.serch{
+border: 0px solid rgb(128, 128, 128); 
+	background:url(../images/bg.gif) 0 -670px repeat;/*15*/
+	width: 51px; 
+	height: 25px;
+}
+.text{
+	border-bottom:1px solid #b39978;
+	border-left:1px solid #9d9185;
+	border-top:1px solid #9c9082; 
+	border-right:1px solid #a29380; 
+	height:18px; 
+	width:276px; 
+	padding-top:4px; 
+	padding-left:4px;
+}

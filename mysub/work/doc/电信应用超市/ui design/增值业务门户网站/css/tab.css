@@ -1,0 +1,94 @@
+.sec_2 {
+	font-size: 12px;
+
+	color: #000000;
+	background-image: url(../images/c_08.gif);
+	width: 20px;
+	height: 26px;
+	cursor:hand;
+	text-align:center;
+	padding-top:2px;
+	font-weight:bold;
+}
+
+.sec_1 {
+	font-size: 12px;
+
+	color: #000000;
+	width: 20px;
+	height: 25px;
+	cursor:hand;
+	text-align:center;
+	padding-top:3px;
+}
+
+
+.sec_4 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	background-image: url(../images/tab_1.gif);
+	width: 108px;
+	height: 22px;
+	cursor:hand;
+	text-align:center;
+	padding-top:5px;
+}
+
+.sec_3 {
+	font-size: 12px;
+	color: #666666;
+	background-image: url(../images/tab_2.gif);
+	width: 100px;
+	height: 24px;
+	cursor:hand;
+	text-align:center;
+	padding-top:3px;
+}
+
+.sec_6 {
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+	background-image: url(../images/tab_3.gif);
+	width: 70px;
+	height: 22px;
+	cursor:hand;
+	text-align:center;
+	padding-top:5px;
+}
+
+.sec_5 {
+	font-size: 12px;
+	color: #666666;
+	background-image: url(../images/tab_4.gif);
+	width: 69px;
+	height: 24px;
+	cursor:hand;
+	text-align:center;
+	padding-top:3px;
+}
+
+
+
+.sec_8 {
+	font-size: 12px;
+	background-image: url(../images/lift_8.gif);
+	color: #000000;
+	width: 54px;
+	height: 19px;
+	cursor:hand;
+	text-align:center;
+	padding-top:3px;
+}
+
+.sec_7 {
+	font-size: 12px;
+	color: #666666;
+
+	width: 48px;
+	height: 19px;
+	cursor:hand;
+	text-align:center;
+	padding-top:3px;
+}

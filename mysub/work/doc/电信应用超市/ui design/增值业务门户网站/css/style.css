@@ -1,0 +1,137 @@
+body{
+	margin:0px;
+	font-size:12px;
+	color:#333333;
+	text-align:center;
+	font-family: "宋体";
+}
+
+.Baise_12{
+font-size:12px;
+color:#FFFFFF;}
+
+.Heise_14{
+font-size:14px;
+color:#000000;
+font-weight:bold;}
+
+.Heise_12{
+font-size:12px;
+color:#333333;}
+
+.ju_12{
+font-size:12px;
+color:#ff5400;
+}
+
+.Huise_14{
+	color:#333333;
+	font-size:14px;
+}
+
+.font_1{width:90px; line-height:22px; text-align:left; margin-left:16px; float:left; margin-bottom:4px;}
+
+
+.ju{padding-top:2px; padding-left:4px;}
+
+
+
+
+
+
+
+
+.huise_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #323031;
+}
+.heise_B_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #000000;
+}
+.hongse_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #ad1315;
+}
+body,td,th {
+	font-family: 宋体;
+	font-size: 12px;
+	color: #000000;
+}
+.heise_B_14 {
+	font-size: 14px;
+	font-weight: bolder;
+	color: #000000;
+}
+.hongse_B_14 {
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	color: #ff6403;
+}
+.moluse_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #1e4b51;
+}
+.baise_14 {
+	font-family: "宋体";
+	font-size: 14px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.nanse_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #0676b6;
+}
+.nanse2_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #014aca;
+}
+.huise2_14 {
+	font-family: "宋体";
+	font-size: 14px;
+	font-weight: bold;
+	color: #656668;
+}
+.huise3_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #656668;
+}
+.juhongse_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #ff6600;
+}
+.huise4_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #454545;
+	text-decoration: underline;
+}
+
+.nanse2_u {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #0a7ab9;
+	text-decoration: underline;
+}
+zhuhongse_12 {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #bd0a01;
+}
+
+.nanse2_u {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #0a7ab9;
+	text-decoration: underline;
+}

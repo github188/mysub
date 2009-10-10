@@ -1,0 +1,281 @@
+A:link {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+A:visited {
+	font-size: 12px;
+	color: #333333;
+	text-decoration: none;
+}
+A:hover {
+	font-size: 12px;
+	color: #FF0000; 
+	text-decoration:underline;
+}
+
+
+.Baise_121 A:link{
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:none;
+
+}
+.Baise_121 A:visited {
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:none;
+
+}
+.Baise_121 A:hover{
+	color:#FFFF00;
+	font-size:12px;
+	text-decoration:underline;
+
+}
+
+.lise_12 A:link{
+	color:#1f4346;
+	font-size:12px;
+	text-decoration:none;
+
+}
+.lise_12 A:visited {
+	color:#1f4346;
+	font-size:12px;
+	text-decoration:none;
+
+}
+.lise_12 A:hover{
+	color:#FF0000;
+	font-size:12px;
+	text-decoration:underline;
+
+}
+
+.Huise_1266 A:link{
+	color:#666666;
+	font-size:12px;
+	text-decoration:none;
+}
+.Huise_1266 A:visited {
+	color:#666666;
+	font-size:12px;
+	text-decoration:none;
+}
+.Huise_1266 A:hover{
+	color:#FF0000;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+.Lanse_12 A:link{
+	color:#2095d7;
+	font-size:12px;
+	text-decoration:none;
+}
+.Lanse_12 A:visited {
+	color:#2095d7;
+	font-size:12px;
+	text-decoration:none;
+}
+.Lanse_12 A:hover{
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+
+.Juh_12 A:link{
+	color:#ff5400;
+	font-size:12px;
+	text-decoration:none;
+}
+.Juh_12 A:visited {
+	color:#ff5400;
+	font-size:12px;
+	text-decoration:none;
+}
+.Juh_12 A:hover{
+	color:#FF0000;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+
+.lan_12 A:link{
+	color:#016a9f;
+	font-size:12px;
+	text-decoration:none;
+}
+.lan_12 A:visited {
+	color:#016a9f;
+	font-size:12px;
+	text-decoration:none;
+}
+.lan_12 A:hover{
+	color:#FF0000;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+.zs_12 A:link{
+	color:#683833;
+	font-size:12px;
+	text-decoration:none;
+}
+.zs_12 A:visited {
+	color:#683833;
+	font-size:12px;
+	text-decoration:none;
+}
+.Huang_12 A:hover{
+	color:#FF0000;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+.Huang_12_link A:link{
+	color:#FFCC33;
+	font-size:12px;
+	text-decoration:none;
+}
+.Huang_12_link A:visited {
+	color:#FFCC33;
+	font-size:12px;
+	text-decoration:none;
+}
+.Huang_12_link A:hover{
+	color:#FFFF00;
+	font-size:12px;
+	text-decoration:underline;
+}
+
+
+.Bai_14 A:link{
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.Bai_14 A:visited {
+	color:#FFFFFF;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:none;
+}
+.Bai_14 A:hover{
+	color:#FFFF00;
+	font-size:14px;
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+
+.Bai_12 A:link{
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:none;
+	filter : progid:DXImageTransform.Microsoft.DropShadow ( color=#251E20 , offX=1 , offY=1 , positive=1 );
+}
+.Bai_12 A:visited {
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:none;
+	filter : progid:DXImageTransform.Microsoft.DropShadow ( color=#251E20 , offX=1 , offY=1 , positive=1 );
+}
+.Bai_12 A:hover{
+	color:#FFFF00;
+	font-size:12px;
+	text-decoration:underline;
+	filter : progid:DXImageTransform.Microsoft.DropShadow ( color=#251E20 , offX=1 , offY=1 , positive=1 );
+}
+
+
+.Foot_12 A:link{
+	color:#D4C1B3;
+	font-size:12px;
+	text-decoration:none;
+	
+}
+.Foot_12 A:visited {
+	color:#D4C1B3;
+	font-size:12px;
+	text-decoration:none;
+	
+}
+.Foot_12 A:hover{
+	color:#FFFF00;
+	font-size:12px;
+	text-decoration:underline;
+	
+}
+
+
+
+
+.Bai_12_ A:link{
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:none;
+	
+}
+.Bai_12_ A:visited {
+	color:#FFFFFF;
+	font-size:12px;
+	text-decoration:none;
+
+}
+.Bai_12_ A:hover{
+	color:#FFFF00;
+	font-size:12px;
+	text-decoration:underline;
+	
+}
+
+
+.tooltips1{
+position:relative; /*这个是关键*/
+z-index:2;
+}
+.tooltips1:hover{
+z-index:3;
+background:none; /*没有这个在IE中不可用*/
+}
+.tooltips1 span{
+display: none;
+}
+.tooltips1:hover span{ /*span 标签仅在 :hover 状态时显示*/
+	display:block;
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:200px;
+	border:1px solid #5AB9E9;
+	background-color:#E4F6FF;
+	padding: 5px;
+	color:#333333;
+	text-decoration: none;
+	font-size:12px;
+}
+
+
+.tooltips2{
+position:relative; /*这个是关键*/
+z-index:2;
+}
+.tooltips2:hover{
+z-index:3;
+background:none; /*没有这个在IE中不可用*/
+}
+.tooltips2 span{
+display: none;
+}
+.tooltips2:hover span{ /*span 标签仅在 :hover 状态时显示*/
+	display:block;
+	position:absolute;
+	top:0px;
+	left:20px;
+
+	color:#333333;
+}
