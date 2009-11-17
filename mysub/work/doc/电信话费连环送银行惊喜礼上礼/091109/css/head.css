@@ -1,0 +1,18 @@
+body {
+	background-image: url(../images/bg.jpg);
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	font-family: "宋体";
+	font-size: 12px;
+	color: #000;
+}
+.head_bg {
+	background: url(../images/head_bg.gif) repeat-x;
+
+}
+.top_bg {
+	background: url(../images/head/top_bg.jpg) no-repeat;
+
+}

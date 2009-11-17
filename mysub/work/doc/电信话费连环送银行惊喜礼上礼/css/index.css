@@ -1,0 +1,233 @@
+body {
+	font-size: 12px;
+	margin: 0px;
+	background-image: url(../images/bg.jpg);
+}
+A:link {
+	font-size: 14px;
+	color: #ff3300;
+	text-decoration: underline;
+}
+A:visited {
+	font-size: 14px;
+	color: #ff3300;
+	text-decoration: underline;
+}
+A:hover {
+	font-size: 14px;
+	color: #FF0000; 
+	text-decoration:none;
+}
+.head {
+	background-image: url(../images/head_bg.gif);
+	background-repeat: repeat-x;
+}
+.top {
+	height: 455px;
+	background-image: url(../images/index/top.jpg);
+	background-repeat: no-repeat;
+}
+.aglin_1 {
+	margin-top: 344px;
+	margin-left: 409px;
+}
+.aglin_2 {
+	margin-top: 15px;
+	margin-left: 413px;
+	font-size: 12px;
+	color: #FFF;
+	font-family: "宋体";
+	line-height: 21px;
+}
+.bg_hongse {
+	background-color: #AE0002;
+}
+.boder_1 {
+	border-right-width: 3px;
+	border-left-width: 3px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #FFAE00;
+	border-left-color: #FFAE00;
+	background-color: #FFF;
+}
+.btn_bg_1 {
+	background-repeat: repeat-x;
+	text-align: left;
+	padding-bottom:10px;
+}
+.border_2 {
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-right-color: #FF6600;
+	border-left-color: #FF6600;
+}
+.height {
+	text-align: center;
+	height: 335px;
+}
+.bg_2 {
+	background-image: url(../images/index/bg_1.jpg);
+	background-repeat: repeat-x;
+	padding-left: 23px;
+	padding-top: 20px;
+}
+.font_1 {
+	font-size: 14px;
+	font-weight: bold;
+	color: #6E060D;
+	line-height: 40px;
+}
+.font_2 {
+	font-size: 14px;
+	line-height: 40px;
+	color: #6E060D;
+	font-weight: bold;
+}
+.font_3 {
+	font-size: 14px;
+	line-height: 20px;
+	color: #6E060D;
+}
+.boder_3 {
+	border: 1px solid #CCC;height:38px; text-align:center; vertical-align:middle;
+}
+.aglin_3 {
+	margin-top: 11px;
+}
+.aglin_4 {
+	padding-bottom: 2px;
+}
+.aglin_5 {
+	margin-top: 23px;
+	margin-bottom: 60px;
+	color: #FFF;
+	line-height: 18px;
+	text-align: center;
+}
+.img {
+	margin-top: 4px;
+	margin-bottom: 40px;
+}
+.aglin_6 {
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+img{border:0;}
+
+.check_textbox{width:190px;height:22px;border:#d1d1d1 1px solid;background:url(../images/index/textbox_bg.jpg) repeat-x; line-height:22px;padding:0 5px;}
+
+
+
+.sec_0 {
+	background-image: url(../images/index/tab/hdjs.gif);
+	width: 124px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_0_c {
+	background-image: url(../images/index/tab/hdjs_c.gif);
+	width: 124px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_1 {
+	background-image: url(../images/index/tab/gh.gif);
+	width: 126px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_1_c {
+	background-image: url(../images/index/tab/gh_c.gif);
+	width: 126px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_2 {
+	background-image: url(../images/index/tab/cdyh.gif);
+	width: 150px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_2_c {
+	background-image: url(../images/index/tab/cdyh_c.gif);
+	width: 150px;
+	height: 35px;
+	cursor:hand;
+}
+
+.sec_3 {
+	background-image: url(../images/index/tab/nyyh.gif);
+	width: 150px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_3_c {
+	background-image: url(../images/index/tab/nyyh_c.gif);
+	width: 150px;
+	height: 35px;
+	cursor:hand;
+}
+
+.sec_4 {
+	background-image: url(../images/index/tab/zsyh.gif);
+	width: 126px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_4_c {
+	background-image: url(../images/index/tab/zsyh_c.gif);
+	width: 126px;
+	height: 35px;
+	cursor:hand;
+}
+
+.sec_5 {
+	background-image: url(../images/index/tab/jsyh.gif);
+	width: 126px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_5_c {
+	background-image: url(../images/index/tab/jsyh_c.gif);
+	width: 126px;
+	height: 35px;
+	cursor:hand;
+}
+
+.sec_6 {
+	background-image: url(../images/index/tab/zfb.gif);
+	width: 134px;
+	height: 35px;
+	cursor:hand;
+}
+.sec_6_c {
+	background-image: url(../images/index/tab/zfb_c.gif);
+	width: 134px;
+	height: 35px;
+	cursor:hand;
+}
+
+.sec_9 {
+	font-size: 12px;
+	color: #666666;
+	width: 120px;
+	height: 35px;
+	cursor:hand;
+	text-align:center;
+	padding-top:5px;
+	font-weight:normal;
+}
+.sec_10 {
+	font-size: 14px;
+	background-image: url(../images/index/tab/hdjs_c.gif);
+	color: #FFFFFF;
+	width: 120px;
+	height: 35px;
+	cursor:hand;
+	text-align:center;
+	padding-top:3px;
+}
