@@ -1,0 +1,74 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>Ͷ������ȷ��֪ͨ</title>
+    <style type="text/css">
+<!--
+.STYLE1 {
+	color: #940a0a;
+	font-weight: bold;
+	font-size: 14px;
+}
+.STYLE2 {
+	color: #940a0a;
+	font-size: 14px;
+}
+.STYLE3 {font-size: 12px; background-color: #EFF7F9; padding: 20px 5px 10px 5px;}
+.STYLE4 {font-size: 12px; background-color: #EFF7F9; padding: 10px 5px 10px 5px;}
+-->
+</style>
+</head>
+<body>
+    <table width="623" border="0" align="center" cellpadding="0" cellspacing="0" style="border: solid 1px #e0e0e0;">
+        <tr>
+            <td width="100%" style="padding: 5px 8px 8px 8px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-top: solid 5px #2679AD;">
+                    <tr>
+                        <td height="29" bgcolor="EFF7F9">
+                            <div align="center" class="STYLE1">
+                                �й�����Ĵ�����Ӫҵ��Ͷ�����ȷ����</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="40" valign="bottom">
+                            <span class="STYLE2">�𾴵Ŀͻ�,��ã�</span><hr color="#2679AD" size="2" />							
+                        </td>						
+						
+                    </tr>
+			
+                    <tr>
+                        <td style="padding: 5px 0px 5px 0px;">
+                            <p class="STYLE3">&nbsp;&nbsp;&nbsp;&nbsp;�����й�����Ĵ�����Ӫҵ������Ͷ������й�����Ĵ���˾���յ���Ϊ���������Ǹ��!���ǽ���48Сʱ�ڸ���ظ��������½⣡<br>&nbsp;&nbsp;&nbsp;&nbsp;��¼�й�����Ĵ�����Ӫҵ�������Ե�����ۺϲ�ѯƵ������ҵ����������ѯ�����ͻ����񹤵���ѯ����ѯ�����ȡ�</p>
+                        </td>
+                    </tr>
+			
+                          
+                    
+                    <tr>
+                        <td style="border-top: solid 2px #2679AD;">
+                            <p align="right" class="STYLE4">
+                                �й���Źɷ����޹�˾$cityname�зֹ�˾<br />
+                                $date<br />
+                            </p>
+                        </td>
+                    </tr>
+                   <tr>
+                         <td style="padding-top: 5px;">
+                            <div align="center" style="background-color: #DFEFEF; padding: 10px 5px 10px 5px;">
+                                <a href="$firstpage" class="STYLE2">�й�����Ĵ�����Ӫҵ����ҳ</a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="8">
+                            <div align="center" class="STYLE3">
+                                �й���Źɷ����޹�˾$cityname�ֹ�˾��Ȩ����,δ����ɲ���ת�ػ�������<br />
+                                    �ͷ��绰 10000 
+                            </div>
+                        </td>
+                    </tr>
+               </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

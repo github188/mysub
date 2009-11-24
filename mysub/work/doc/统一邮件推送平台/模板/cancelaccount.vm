@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>帐号注销通知</title>
+    <style type="text/css">
+<!--
+.STYLE1 {
+	color: #940a0a;
+	font-weight: bold;
+	font-size: 14px;
+}
+.STYLE2 {
+	color: #940a0a;
+	font-size: 14px;
+}
+.STYLE3 {font-size: 12px; background-color: #EFF7F9; padding: 20px 5px 10px 5px;}
+.STYLE4 {font-size: 12px; background-color: #EFF7F9; padding: 10px 5px 10px 5px;}
+-->
+</style>
+</head>
+<body>
+    <table width="623" border="0" align="center" cellpadding="0" cellspacing="0" style="border: solid 1px #e0e0e0;">
+        <tr>
+            <td width="100%" style="padding: 5px 8px 8px 8px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-top: solid 5px #2679AD;">
+                    <tr>
+                        <td height="29" bgcolor="EFF7F9">
+                            <div align="center" class="STYLE1">
+                                真遗憾，没能把您留住</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="40" valign="bottom">
+                            <span class="STYLE2">尊敬的$username，您好！</span><hr color="#2679AD" size="2" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px 0px 5px 0px;">
+                            <p class="STYLE3"> 
+							&nbsp; &nbsp; 欢迎您使用中国电信四川网上营业厅主页，您已在$overtime成功注销了您的帐号，此帐号已经被系统锁定了。<br/></span><br />
+							  </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border-top: solid 2px #2679AD;">
+                            <p align="right" class="STYLE4">
+                                中国电信股份有限公司$cityname市分公司<br />
+                                $date<br />
+                            </p>
+                        </td>
+                    </tr>
+                   <tr>
+                         <td style="padding-top: 5px;">
+                            <div align="center" style="background-color: #DFEFEF; padding: 10px 5px 10px 5px;">
+                                <a href="$firstpage" class="STYLE2">中国电信四川网上营业厅主页</a></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="8">
+                            <div align="center" class="STYLE3">
+                                中国电信股份有限公司$cityname分公司版权所有,未经许可不得转载或建立镜像<br />
+                                    客服电话 10000 
+                            </div>
+                        </td>
+                    </tr>
+               </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

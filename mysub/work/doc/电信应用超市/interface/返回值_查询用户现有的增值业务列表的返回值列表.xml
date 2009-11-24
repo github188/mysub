@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlResult>
+	<resultCode></resultCode>
+	<resultMsg></resultMsg>
+	<subInfo>
+		<platFormId></platFormId>
+		<platFormName></platFormName>
+		<tvasOfferCode></tvasOfferCode>
+		<tvasOfferName></tvasOfferName>
+		<statusCd></statusCd>
+		<subsModeType></subsModeType>
+		<pricePlanTypeCd></pricePlanTypeCd>
+		<charge></charge>
+		<startDate></startDate>
+		<endDate></endDate>
+		<isFree></isFree>
+		<otherKeyInfoType></otherKeyInfoType>
+		<otherKeyInfoValue></otherKeyInfoValue>
+		<chargeAccessNumberType></chargeAccessNumberType>
+		<chargeAccessNumber></chargeAccessNumber>
+		<channelName></channelName>
+		<remarks></remarks>
+	</subInfo>
+</xmlResult>

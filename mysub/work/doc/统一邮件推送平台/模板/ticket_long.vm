@@ -1,0 +1,193 @@
+<LINK href="http://sc.ct10000.com/common/main.css" type=text/css 
+rel=stylesheet>
+<style type="text/css">
+<!--
+.email_01 {
+	font-family: "宋体";
+	font-size: 15px;
+	font-weight: bold;
+	color: #9D3131;
+}
+.kk_01 {
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	border-bottom-color: #CCCCCC;
+}
+-->
+</style>
+<TABLE width=630 height=94 align="center">
+  <TBODY>
+  <TR>
+    <TD>
+      <TABLE cellSpacing=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD width="119" rowSpan=2><a href="http://sc.ct10000.com" target="_blank"><img src="http://sc.ct10000.com/images/index2/logo.gif" width="170" height="47" /></a></TD>
+          <TD width="159" rowSpan=2><img src="http://sc.ct10000.com/images/index2/logo_city.gif" width="177" height="47" /></TD>
+          <TD width="336" align=right>&nbsp;</TD>
+        </TR>
+        </TBODY></TABLE>
+      <TABLE height=13 width="100%">
+        <TBODY>
+        <TR>
+          <TD></TD></TR></TBODY></TABLE>
+      <TABLE height=5 cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#043e99>
+          <TD width=530 bgColor=#043e99></TD>
+<TD align=right width=180 
+  bgColor=#fe7c24></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+ 
+<TABLE width=600 align="center" background="http://sc.ct10000.com/images/email_call01_03.gif">
+  <TBODY>
+    <TR>
+      <TD height=195 valign="top" background="http://sc.ct10000.com/images/email_call01_03.gif"><TABLE width=620 height="36" border=0 cellPadding=0 cellSpacing=0 background="http://sc.ct10000.com/images/mail_045.jpg">
+        <TBODY>
+          <TR>
+            <TD width="17" valign="bottom"></TD>
+            <TD width="585" valign="bottom" class="email_01">　　尊敬的中国电信客户，您${month}的通话详单信息如下：</TD>
+            <TD width="18" valign="bottom"></TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+          <TABLE width=620 border=0 cellPadding=0 cellSpacing=0 background="http://sc.ct10000.com/images/mail_046.jpg">
+            <TBODY>
+              <TR>
+                <TD width=18></TD>
+                <TD align=center valign="middle" class="email_02"><table width="100%" border="0" cellpadding="0" cellspacing="0" background="http://sc.ct10000.com/images/email_call01_03.gif">
+                  <tr>
+                    <td colspan="4" align="center">
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img name="" src="" width="2" height="10" alt="" /></td>
+  </tr>
+</table>
+	
+          
+					<table width="95%" border="0" cellspacing="1" cellpadding="0">
+					
+                  <tr>
+                    <td width="20%" height="25" class="kk_01" align="right">城市编号：</td>					
+                    <td width="30%" class="kk_01" align="left">
+					#if ( ${citycode} == "0132" )
+									<span>0832</span>
+								#elseif ( ${citycode} == "0133" )
+									<span>0833</span>
+									   #elseif ( ${citycode} == "0128" )
+									       <span>028</span>
+									     #else 
+									       $citycode
+								#end
+					</td>
+                    <td width="20%" class="kk_01" align="right">主叫号码：</td>
+					
+                    <td width="30%" class="kk_01" align="left">${productnbr}</td>
+					
+                  </tr>
+                  <tr>
+                    <td height="25" class="kk_01" align="right">计费周期：</td>
+                    <td class="kk_01" align="left">${month}</td>
+                    <td class="kk_01" align="right">总话单数:</td>
+                    <td class="kk_01" align="left">${ticket.size()}</td>
+                  </tr>
+                </table>
+				      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1">
+                      <tr>     
+		      
+                          <td width="12%" align="center" height=28 class="kk_01"><strong>起始时间</strong></td>
+			  <td width="10%" align="center" height=28 class="kk_01"><strong>通话时长</strong></td>
+			  <td width="11%" align="center" height=28 class="kk_01"><strong>呼叫类型</strong></td>
+			  <td width="15%" align="center" height=28 class="kk_01"><strong>对方号码</strong></td>
+			  <td width="13%" align="center" height=28 class="kk_01"><strong>通话类型</strong></td>
+			  <td width="11%" align="center" height=28 class="kk_01"><strong>基本或漫游费(元)</strong></td>
+			  <td width="10%" align="center" height=28 class="kk_01"><strong>长途费(元)</strong></td>
+			  <td width="10%" align="center" height=28 class="kk_01"><strong>其他费(元)</strong></td>
+			  <td width="10%" align="center" height=28 class="kk_01"><strong>优惠减免(元)</strong></td>
+			  <td width="10%" align="center" height=28 class="kk_01"><strong>小计(元)</strong></td>
+		       
+                      </tr>
+                    #foreach( $datarow in $ticket )
+		              
+			        <tr>											
+						<td height=35 class="kk_01" align="center">${datarow.getString("CALLTIME")}</td>
+						<td height=35 class="kk_01" align="center">
+						#set ( $timelong = $helpFactory.parseSecond(${datarow.getInt("TIMELONG")} ) ) 
+						${timelong} 
+						</td>
+						<td height=35 class="kk_01" align="center">${datarow.getString("CALL_TYPE")}</td>
+						<td height=35 class="kk_01" align="left">
+						#set ( $thatPhone = ${datarow.getString("OTHERPHONE")} )						
+					        ${datarow.getString("CALLED_CITYCODE")}$thatPhone						
+						</td>
+						<td height=35 class="kk_01" align="center">${datarow.getString("CALCUNIT")}</td>
+						<td height=35 class="kk_01" align="center">${datarow.getString("MONEY")}</td>
+						<td height=35 class="kk_01" align="center">${datarow.getString("CT_MONEY")}</td>						
+						<td height=35 class="kk_01" align="center">${datarow.getString("OTHER_MONEY")}</td>
+						<td height=35 class="kk_01" align="center">${datarow.getString("YH_MONEY")}</td>
+						<td height=35 class="kk_01" align="center">${datarow.getString("DEGREE")}</td>
+							
+				  </tr>
+
+			      
+		#end
+					
+		   
+                    </table>
+					<table width="90%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img name="" src="" width="5" height="10" alt="" /></td>
+  </tr>
+</table>
+
+					</td>
+                  </tr>       
+                  
+                                    <tr class="email_03">
+                    <td width="24%">&nbsp;</td>
+                    <td colspan="2" align="right" class="email_03">中国电信股份有限公司${cityname}市分公司</td>
+                    <td width="4%">&nbsp;</td>
+                  </tr>
+                                    <tr class="email_03">
+                    <td>&nbsp;</td>
+                    <td colspan="2" align="right" class="email_03">${date}</td>
+                    <td>&nbsp;</td>
+                  </tr>
+				      <tr class="email_03">
+                   
+                    <td colspan="4" align="center" class="email_03"><a href="http://sc.ct10000.com"><img src="http://sc.ct10000.com/images/jrwt01.gif"></a></td>
+                    
+                  </tr>
+                                    <tr class="color_blue1">
+                    <td height="123" colspan="4" align="left" valign="middle" class="email_02">　　
+                      <P>　　尊敬的中国电信客户，此详单便于您了解自己的通信费用支出情况，若有疑问，请拨打中国电信客户服务热线10000，2006年1月1日起中国电信按自然月计费，缴费时间为每月5日至次月4日。</td>
+                  </tr>
+                                    <tr class="email_03">
+                                      <td colspan="4" align="center" valign="middle" class="email_03">中国电信四川公司版权所有，未经许可不得转载或建立镜像<br>
+                                      客服电话 10000</td>
+                                    </tr>
+                                    
+                </table>
+		<TABLE cellSpacing="0" cellPadding="0" width="1" height="1" background=${guidurl} border=0>
+		<tr><td>&nbsp;</td></tr>
+		</TABLE> 
+		</TD>
+                <TD width=16></TD>
+              </TR>
+            </TBODY>
+        </TABLE>
+        <TABLE height="36" cellSpacing="0" cellPadding="0" width="620" 
+      background="http://sc.ct10000.com/images/mail_044.jpg" border=0>
+            <TBODY>
+              <TR>
+                <TD width="18" 
+align=middle vAlign=top>&nbsp;</TD>
+                <TD width="585" 
+align=right vAlign=top class="email_03">&nbsp;</TD>
+                <TD width="17" 
+align=middle vAlign=top>&nbsp;</TD>
+              </TR>
+            </TBODY>
+      </TABLE></TD>
+    </TR>
+  </TBODY>
+</TABLE>

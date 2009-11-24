@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmlInputInfo>
+	<list>
+		<accNbr></accNbr>
+		<areaCode></areaCode>
+		<accNbrType></accNbrType>
+		<prodSpecId></prodSpecId>
+		<platFormId></platFormId>
+		<tvasOfferCode></tvasOfferCode>
+		<tvasOfferName></tvasOfferName>
+		<subsModeType></subsModeType>
+	</list>
+</xmlInputInfo>

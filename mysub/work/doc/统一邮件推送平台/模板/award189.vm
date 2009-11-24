@@ -1,0 +1,24 @@
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	text-align:center;
+}
+-->
+</style>
+
+<table align="center" border="0">
+<tr>
+<td>
+<img src="http://sc.ct10000.com/images/189/189mail.jpg" width="500" border="0" usemap="#Map" />
+<map name="Map" id="Map">
+  <area shape="rect" coords="192,484,280,522" href="http://sc.ct10000.com/view/questionresearch/mail189/getAward.jsp" target="_blank" />
+</map>
+<td>
+</tr>
+</table>
+<TABLE cellSpacing="0" cellPadding="0" width="1" height="1" background=${guidurl} border="0">
+

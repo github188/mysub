@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<result>0</result>
+	<msg>操作成功</msg>
+	<body>
+		<list>
+			<crid>S300189999</crid>
+			<ring_url><![CDATA[http://221.236.6.57/wavbox/S300/18/S300189999.wav ]]></ring_url>
+			<ring_name><![CDATA[默认铃音盒 ]]></ring_name>
+			<price>0</price>
+			<download_time>20091028174217</download_time>
+			<ring_type>1</ring_type>
+		</list>
+	</body>
+</root>

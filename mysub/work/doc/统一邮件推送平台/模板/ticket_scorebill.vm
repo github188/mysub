@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="http://sc.ct10000.com/common/main.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+<!--
+body {
+	background-image: url(http://sc.ct10000.com/images/ggmb05.gif);
+}
+-->
+</style></head>
+
+<body>
+<table width="493" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+<tr>
+    <td width="459" align="center" valign="middle">
+	<TABLE width=620 height=94 border="0" align="center" cellpadding="0" cellspacing="0">
+  <TR>
+    <TD width="620"><a href="http://sc.ct10000.com/view/club/content.jsp?id=38897" target="_blank"><img src="http://sc.ct10000.com/images/ad/vip_gh.jpg" width="620" height="118" /></a></TD> 
+  </TR></TABLE>
+	</td>
+  </tr>
+  <tr>
+    <td width="459" align="center" valign="middle"><img src="http://sc.ct10000.com/email_call/images/email_jfdj.gif" width="416" height="191" border="0" usemap="#Map" />
+      <map name="Map" id="Map">
+        <area shape="rect" coords="9,114,183,156" href="http://sc.ct10000.com/" target="_blank" />
+    </map></td>
+  </tr>
+  
+  <tr>
+    <td align="center" background="http://sc.ct10000.com/email_call/images/email_call01_02.gif">
+	<table width="100%" height="20" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img name="" src="" width="2" height="20" alt="" /></td>
+      </tr>
+    </table>
+      #foreach($datarow in $ticket)
+      <table width="416" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="431" align="left" class="color_b_333"><span class="color_b_333">尊敬的我的e家客户，您好！</span></td>
+      </tr>
+      <tr>
+        <td align="left" class="color_333">&nbsp;&nbsp;&nbsp;&nbsp;这是您定制的${month}积分单据，感谢您对中国电信的支持！中国电信【我的e家】将提供更加优质、更加贴心的服务，祝您生活愉快!</td>
+      </tr>
+      <tr>
+        <td class="color_333">---------------------------------------------------------------------</td>
+      </tr>
+      <tr>
+        <td align="left" class="color_333">
+		 <span class="color_333"><strong>客户名称</strong>：${username}</span> <br />
+          <span class="color_333"><strong>客户产品号码</strong>：
+#if ( ${citycode} == "0132" )
+   0832
+#elseif ( ${citycode} == "0133" )
+   0833
+#elseif ( ${citycode} == "0128" )
+   028
+#else 
+   $citycode
+#end
+- ${productnbr}</span> <br />
+          <span class="color_333"><strong>积分周期</strong>：${month}</span> <br />
+		  </td>
+	  </tr>
+	  <tr>
+        <td class="color_333">---------------------------------------------------------------------</td>
+      </tr>
+      <tr>
+	     <td align="left">
+           
+          <span class="color_333"><b>当月新增积分：</b>${datarow.getString("tele_integ")}</span><br />
+          <span class="color_333"><b>当前可用积分：</b>${datarow.getString("curr_integ")}</span><br />
+		  <span class="color_333"><b>已兑换积分：</b>${datarow.getString("cash_integ")}</span>
+		  </td>
+      </tr>
+      <tr>
+        <td class="color_333">---------------------------------------------------------------------</td>
+      </tr>
+      <tr>
+        <td align="left" class="color_333"><p>&nbsp;&nbsp;&nbsp;&nbsp;您可登录中国电信网上营业厅<a href="http://sc.ct10000.com/">http://sc.ct10000.com</a>尽享精彩礼品、话费，轻松兑换，查阅更多积分活动、积分兑换，还可实现网上自助服务办理、网上支付、账单清单查询等。<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;感谢您对我们的支持！在今后的工作中，我们将以更优质的服务、更可靠的技术、更好的产品带给您最好的体验。请您继续关心和支持我们。 </p></td>
+      </tr>
+      <tr>
+        <td class="color_333">---------------------------------------------------------------------</td>
+      </tr>
+      <tr>
+        <td align="right" class="color_333">中国电信股份有限公司${cityname}分公司<br />
+          ${datarow.getString("newdate")}</td>
+      </tr>
+    </table>
+     #end
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="center">　</td>
+        </tr>
+        <tr>
+          <td align="center" class="color_333">中国电信股份有限公司${cityname}分公司版权所有，未经许可不得转载或建立镜像</td>
+        </tr>
+        <tr>
+          <td align="center" class="color_333">客服电话 10000</td>
+        </tr>
+      </table>      
+      <table width="100%" height="20" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+        <td><img name="" src="" width="2" height="20" alt="" /></td>
+      </tr>
+    </table>
+    <TABLE cellSpacing="0" cellPadding="0" width="1" height="1" background=${guidurl} border=0>
+	<tr><td>&nbsp;</td></tr>
+        </TABLE> 
+	</td>
+  </tr>
+</table>
+
+</body>
+</html>
