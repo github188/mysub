@@ -1,0 +1,54 @@
+以下相关截止2009年11月30日的07年可用积分清零接口表及数据库访问信息； 
+数据库连接： 
+PUODS = 
+     (DESCRIPTION = 
+             (LOAD_BALANCE = YES) 
+             (FAILOVER=ON) 
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 133.37.253.171)(PORT = 1521)) 
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 133.37.253.188)(PORT = 1521)) 
+      (CONNECT_DATA = 
+             (SERVER = DEDICATED) 
+             (SERVICE_NAME = PUODS) 
+      (FAILOVER_MODE= 
+             (TYPE=SELECT) 
+             (METHOD=BASIC)) 
+             ) 
+      ) 
+用户名及口令：pu_dm_view/psct_14_dm 
+视图名：pu_dm_view.tb_pnt_cust07_clear_#latn_id#(截止2009年11月30日客户积分帐本中还存在07年剩余可用积分的客户清单) 
+字段说明： 
+CUST_ID   NUMBER(22)      产权客户ID 
+CUST_NAME VARCHAR2(200)  客户名称 
+CDMA_NBR  VARCHAR2(30)  CDMA号码(客户下任取其中一个) 
+E_NBR     VARCHAR2(30)   E家固定电话号码(客户下其中一个E家对应的固定电话号码) 
+CUR_CN    NUMBER(22)    07年剩余可用积分 
+FLAG      NUMBER(3)    1：当前注册且非屏蔽的客户；2：当前注册且为屏蔽的客户；3：当前非注册且历史有过可用积分的客户； 
+注：可供客户查询的客户清单为表中字段flag=1的客户，即当前注册且非屏蔽的客户；另flag=2和 3的客户，是供其他系统可查询给客户解释用。 
+麻烦转发给其他系统供抽取！谢谢！ 
+相关统计数据及与客户积分帐本核对的统计结果见附件。 
+另附上视图名LATN_ID对应本地网关系： 
+LATN_ID  LATN_NAME  
+28 成都  
+812 攀枝花  
+813 自贡  
+816 绵阳  
+817 南充  
+818 达州  
+825 遂宁  
+826 广安  
+827 巴中  
+830 泸州  
+831 宜宾  
+832 内江  
+833 乐山  
+834 凉山  
+835 雅安  
+836 甘孜  
+837 阿坝  
+838 德阳  
+839 广元  
+840 眉山  
+841 资阳 
+
+
+
