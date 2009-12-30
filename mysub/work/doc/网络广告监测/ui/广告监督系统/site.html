@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>站点配置</title>
+<link href="css/info.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/stylev4.css" rel="stylesheet" type="text/css" media="all" />
+<link rel='STYLESHEET' type='text/css' href='common/style.css'>
+<link rel="stylesheet" type="text/css" href="css/css.css" media="all" />
+<link rel="STYLESHEET" type="text/css" href="codebase/dhtmlxtree.css">
+<script type="text/javascript" src="lhgdialog.js"></script>
+	<script  src="codebase/dhtmlxcommon.js"></script>
+	<script  src="codebase/dhtmlxtree.js"></script>
+	<script>
+	
+		function fixImage(id){
+			switch(tree.getLevel(id)){
+			case 1:
+			tree.setItemImage2(id,'books_close.gif','tombs.gif','tombs.gif');
+				break;
+			case 2:
+			tree.setItemImage2(id,'book.gif','books_open.gif','books_close.gif');			
+				break;
+			case 3:
+			tree.setItemImage2(id,'book.gif','books_open.gif','book.gif');			
+				break;			
+			default:
+			tree.setItemImage2(id,'book_titel.gif','book_titel.gif','book_titel.gif');			
+				break;
+			}
+		}
+
+		
+	</script>
+</head>
+
+<body>
+<div class="column3">
+	    	
+	        <div class="tags tag_acc">
+	        	<h4 class="pw0"><strong>&gt;站点配置</strong></h4>
+
+	            <a href="#" class="tag_link" id="a_reg_1">当前共有300个站点</a>
+	           
+	        </div>
+	        <form id="form_reg" name="form_reg" method="post">
+	            <input type="hidden" id="reg_account" name="reg_account" value=""/>
+	            <input type="hidden" id="reg_type" name="reg_type" value="1"/>
+	            <input type="hidden" id="referurl" name="referurl" value=""/>
+		        <div class="normalform">
+         
+		            <div class="item">
+		                <label class="lab">站点名称：</label>
+		                <input tabindex="1"  id="sitename" name="sitename" type="text" class="tx_ipt" maxlength="10" value=""/>
+		                <span class="c_red">&nbsp;*</span>
+		                <span class="cues">（必填）</span>
+		                		                           
+		            </div>
+		            
+		            <div class="item">
+		                <label class="lab">站点地址：</label>
+		                <input tabindex="2" id="siteaddress" name="siteaddress" type="text" class="tx_ipt" maxlength="16" value=""/>
+		                <span class="c_red">&nbsp;*</span>
+		                <span class="cues">（必填）</span>
+		                		                
+		            </div>
+		            
+		            <div class="item faqtips">
+		            	<a href="#" class="a_ts">检查该站点是否已经存在</a>
+		                          
+		            </div>	            
+		            
+		            
+		            <div class="item2">
+		                <a href="#" class="btn_normal">查找定位</a>
+<a href="javascript:void(0);" onClick="var d=new Date(); tree.insertNewNext(tree.getSelectedItemId(),d.valueOf(),document.getElementById('sitename').value,0,0,0,0,'SELECT'); fixImage(d.valueOf());" class="btn_normal">添加主站</a>
+<a href="javascript:void(0);" onClick="var d=new Date(); tree.insertNewItem(tree.getSelectedItemId(),d.valueOf(),document.getElementById('sitename').value,0,0,0,0,'SELECT'); fixImage(d.valueOf());" class="btn_normal">添加下级</a>
+<a href="javascript:void(0);" onClick="tree.deleteItem(tree.getSelectedItemId(),true);" class="btn_normal">删除站点</a>
+		             </div>
+		             
+		           <div id="treeboxbox_tree" style="width:400px; height:280px;background-color:#f5f5f5;border :1px solid #ccc; overflow:auto;"></div>
+		          <div class="manu"><span class="disabled"> <  Prev</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2">Next  > </a></div>  
+		            <div class="bott"><a href="#" class="btn_normal">保存配置</a><a href="javascript:void(0);" onclick="var d=new Date(); tree.setItemText(tree.getSelectedItemId(),document.getElementById('sitename').value);" class="btn_normal">修改配置</a><a href="#"  class="btn_long2">为站点配置规则</a></div>
+		            
+
+		            
+		        </div>
+	<script>
+			tree=new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			tree.setImagePath("codebase/imgs/csh_bluebooks/");
+                        tree.enableCheckBoxes(1);
+                        tree.enableThreeStateCheckboxes(true);
+			tree.loadXML("tree3.xml");
+
+
+	</script>
+	      </form>
+	    </div>
+</body>
+</html>

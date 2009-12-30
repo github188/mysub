@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>规则配置</title>
+<link href="css/info.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/stylev4.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/css.css" media="all" />
+<link rel="stylesheet" type="text/css" href="css/calendar.css" media="screen" />
+<script type="text/javascript" src="lhgdialog.js"></script>
+	<script type="text/javascript" src="js/mootools.js"></script>
+	<script type="text/javascript" src="js/calendar.rc4.js"></script>
+	<script type="text/javascript">		
+	//<![CDATA[
+		window.addEvent('domready', function() { 
+			myCal1 = new Calendar({ date1: 'd/m/Y' }, { direction: 1, tweak: {x: 6, y: 0} });
+			
+		});
+	//]]>
+	</script>
+
+	
+
+</head>
+
+<body>
+<div class="column3">
+	    	<div class="tags tag_acc">
+	        	<h4 class="pw2"><strong>&gt;工作配置</strong></h4>
+	            <a href="#" class="tag_link" id="a_reg_1">当前共有300条工作</a>
+	           
+	        </div>
+	        <form id="form_reg" name="form_reg" method="post">
+	            <input type="hidden" id="reg_account" name="reg_account" value=""/>
+	            <input type="hidden" id="reg_type" name="reg_type" value="1"/>
+	            <input type="hidden" id="referurl" name="referurl" value=""/>
+		        <div class="normalform">
+         
+		            <div class="item">
+		                <label class="lab">工作周期：</label>
+		                		                <select name="select" class="sel">
+		                  <option value="d1">每日</option>
+		                  <option value="d2">每周</option>
+		                  <option value="d3">每月</option>
+
+                        </select>
+		                <span class="c_red">&nbsp;*</span>
+		                <span class="cues">（必填）</span>
+		                		                           
+		            </div>
+		            
+	              <div class="item">
+		                <label class="lab">工作时间：</label>
+		                
+<input tabindex="1"  id="sitename" name="sitename" type="text" class="tx_ipt" maxlength="10" value=""/>
+	                  <span class="c_red">&nbsp;*</span>
+	                  <span class="cues">（必填）</span>		            </div>
+		           	<div class="item">
+		                <label class="lab">有效日期：</label>
+		                
+<input id="date1" name="date1" type="text" class=""tx_ipt"/>
+	                  <span class="c_red">&nbsp;*</span>
+	                  <span class="cues">（必填）</span>		            </div> 
+		         
+		            
+					<div id="treeboxbox_tree" style="width:400px; height:280px;border :1px solid #ccc;overflow:auto;">
+<table width="99%"  height="99%" border="0" cellspacing="0" cellpadding="0" class="grid">
+  <tr>
+    <th><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></th>
+    <th>站点名称</th>
+    <th>工作周期</th>
+    <th>工作时间</th>
+    <th>有效时间</th>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >新浪</td>
+    <td >每日</td>
+    <td >23：00</td>
+    <td >2009-12-29</td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+  <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+    <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+    <tr>
+    <td><div align="center">
+      <div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div>
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+    <tr>
+    <td><div align="center">
+      <input type="checkbox" name="checkbox" value="checkbox"  />
+    </div></td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+    <td >&nbsp;</td>
+  </tr>
+</table>
+</div>
+		          <div class="manu"><span class="disabled"> <  Prev</span><span class="current">1</span><a href="#?page=2">2</a><a href="#?page=3">3</a><a href="#?page=4">4</a><a href="#?page=5">5</a><a href="#?page=6">6</a><a href="#?page=7">7</a>...<a href="#?page=199">199</a><a href="#?page=200">200</a><a href="#?page=2">Next  > </a></div>
+				  
+		            <div class="bott"><a href="#" class="btn_normal">应用工作</a></div>
+		            
+
+		            
+		        </div>
+
+	      </form>
+	    </div>
+</body>
+</html>

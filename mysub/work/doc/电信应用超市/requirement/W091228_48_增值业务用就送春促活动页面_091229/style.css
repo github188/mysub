@@ -1,0 +1,18 @@
+@charset "utf-8";
+/* CSS Document */
+
+html,body{height:100%;margin:0;padding:0;}
+img{border:0;}
+a{text-decoration:none;}
+select{font-size:12px;}
+body{font-family:Verdana, Geneva, sans-serif;font-size:12px;line-height:150%;color:#333;}
+#button{color:#fff;}
+.btn_bg{text-align:center;}
+.btn_bg a{width:80px;height:26px;line-height:26px;color:#fff;display:block;background:url(images/btn_bg.jpg);}
+.btn_bg a:hover{color:#b12923;font-weight:bold;background:url(images/buttom_hover_bg.jpg);}
+#btn_click{color:#b12923;font-weight:bold;background:url(images/buttom_hover_bg.jpg);}
+.textbox p{text-indent:2em;}
+.input_box td{height:30px;}
+.input_box input.ipt_text{width:200px;border:#999 1px solid;height:16px;font-size:12px;background:url(images/input_bg.jpg) repeat-x;}
+.aln_rt{text-align:right;}
+.bk{width:360px;padding:1em;border:#f90 2px dotted;color:#f00;font-size:14px;line-height:150%;background:#fff1dd;}

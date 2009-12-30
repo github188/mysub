@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>test</title>
+	<script type="text/javascript">
+var P = window.parent, D = P.loadinndlg();
+
+window.onload = function()
+{
+    P.crebtn( 'next', '下一步', next );  //创建一个下一步按钮
+	P.crebtn( 'rese', '重 置', doreset );
+}
+
+function next()  //确定按钮调用的函数
+{
+    document.getElementById('a').style.display = 'none';
+	document.getElementById('b').style.display = '';
+	P.rembtn('rese'); P.crebtn( 'over', '完 成', over ); P.rembtn('next');
+}
+
+function doreset()
+{
+    var frm = document.getElementById('tmpfrm');
+	frm.reset();
+}
+
+function over()
+{
+    P.cancel();
+}
+	</script>
+</head>
+
+<body>
+    <div id="a" style="display:">
+	    <form id="tmpfrm">
+		    <input type="text" value=""/><br/>
+			<input type="text" value=""/> 在这2个文本框输入些内容然后点重置按钮可看到效果
+		</form>
+	</div>
+	<div id="b" style="display:none">
+	    操做已完成
+	</div>
+</body>
+</html>

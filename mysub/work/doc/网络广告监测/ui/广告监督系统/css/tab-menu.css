@@ -1,0 +1,65 @@
+
+#containter{
+}
+#title {
+	height: 25px;
+	
+}
+
+
+#title li {
+    float:left;
+	margin-right:1px;
+   	text-align:center;
+	}
+#title ul {
+list-style:none;
+BACKGROUND:  url(../images/title_bg.gif) no-repeat ;
+padding-top:1px;
+height:25px;
+}
+#title a {
+font-size:12px;
+text-decoration:none;
+display:block;
+color:#000;
+width: auto;
+background: url(../images/tab_menu.png) no-repeat left top;
+}
+#title a span{
+display:block; 
+line-height:25px; 
+padding:0 10px;
+background: url(../images/tab_menu_right.png) no-repeat right top;}
+
+#title #tag1 a:hover,#title #tag2 a:hover,#title #tag3 a:hover,#title #tag4 a:hover{
+	text-decoration: none;
+	width: auto;
+	background: url(../images/tab_menu_hover.png) no-repeat left top;
+}
+#title #tag1 a:hover span,#title #tag2 a:hover span,#title #tag3 a:hover span,#title #tag4 a:hover span{
+	background: url(../images/tab_menu_hover_right.png) no-repeat right top;
+	
+}
+
+#title .selectli1,#title .selectli2 ,#title .selectli3,#title .selectli4 {
+	background:  url(../images/tab_menu_hover.png) no-repeat left top;
+}
+#title a .selectspan1,#title a .selectspan2,#title a .selectspan3,#title a .selectspan4{
+    background: url(../images/tab_menu_hover_right.png) no-repeat right top; 
+	
+}
+#content {margin:0;height:240px;BACKGROUND: url(../images/content_bg.png) repeat-y; font-size:12px;text-align:center;
+}
+
+
+
+.content1, .content2,.content3,.content4,.content5,.content6{
+border:none;
+text-align:left;
+padding:2px;
+
+}
+.content_bottom{margin:0; BACKGROUND: url(../images/content_bottom.png) no-repeat;height:4px
+}
+.hidecontent {display:none;}/* CSS Document */

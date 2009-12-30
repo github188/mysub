@@ -1,0 +1,45 @@
+
+
+#menu li {
+float:right; padding-top:6px; height:32px; line-height:25px;
+	}
+#menu ul {
+height:37px; overflow:hidden;
+
+}
+.channel_nav li a {
+display:block; margin:0 5px; _width:84px;min-width:84px; height:32px; text-align:center; white-space:nowrap; color:#C0E4FF;
+}
+
+#menu #tag1 a:hover,#menu #tag2 a:hover,#menu #tag3 a:hover,#menu #tag4 a:hover,#menu #tag5 a:hover,#menu #tag6 a:hover {
+text-decoration:none;
+}
+
+
+#menu .selectli1,#menu .selectli2 ,#menu .selectli3 ,#menu .selectli4 ,#menu .selectli5 ,#menu .selectli6  {
+	color:#444; font-weight:bold; background:url(../images/bg_toper.png) no-repeat;
+}
+
+
+#sub_nav1,#sub_nav2,#sub_nav3,#sub_nav4,#sub_nav5{
+float:right;
+width:370px;
+   
+    height:23px;overflow:hidden;}
+
+#sub_nav1 li,#sub_nav2 li,#sub_nav3 li,#sub_nav4 li,#sub_nav5 li{
+    float:left; padding-top:3px; 
+    }
+#sub_nav1 li a,#sub_nav2 li a,#sub_nav3 li a,#sub_nav4 li a,#sub_nav5 li a{
+ margin:0 5px; padding:0 10px; line-height:20px; color:#043B7F; white-space:nowrap;
+      
+
+}
+#sub_nav a:hover{color:#168EE6;}
+
+.sub_nav1, .sub_nav2,.sub_nav3,.sub_nav4,.sub_nav5,.sub_nav6{
+border:none;
+text-align:center;
+}
+
+.hidesub_nav {display:none;}

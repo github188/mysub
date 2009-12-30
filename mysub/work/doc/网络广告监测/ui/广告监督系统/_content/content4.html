@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>test</title>
+	<script type="text/javascript">
+var P = window.parent, D = P.loadinndlg();
+
+window.onload = function()
+{
+    P.crebtn( 'obtn', '确 定', ok );  //创建一个确定按钮
+}
+
+function ok()  //确定按钮调用的函数
+{
+    var d2 = D.document.getElementById('dlg2').contentWindow.document.getElementById('frmain').contentWindow;
+	d2.document.getElementById('txt2').value = document.getElementById('txt1').value;
+}
+	</script>
+</head>
+
+<body>
+    <input id="txt1" type="text"/>点击确定按钮即可把值传到窗口2里
+</body>
+</html>

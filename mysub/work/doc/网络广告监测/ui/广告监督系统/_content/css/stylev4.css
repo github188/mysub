@@ -1,0 +1,12 @@
+@charset "utf-8";
+* {margin:0;padding:0;}
+html {background:#FFFFFF;}
+body {font:normal 12px/1.6em simsun,Tahoma, Verdana, Lucida, Arial;color:#444; background:url(../images/bg_toper.png) repeat-x center -50px;}
+ol,ul {list-style:none;}
+a {text-decoration:none;color:#0066CC;}
+a:hover {text-decoration:underline;}
+input,select,form img,button {vertical-align:middle;}
+img {border:0;}
+button {cursor:pointer;}
+h1,h2,h3,h4,h5,h6 {font-size:100%;}
+em{ font-style:normal;}

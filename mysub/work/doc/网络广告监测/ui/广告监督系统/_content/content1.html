@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+	<title>本地保存路径</title>
+<link href="css/stylev4.css" rel="stylesheet" type="text/css" />
+<link href="css/niceforms-default.css" rel="stylesheet" type="text/css" />
+<link rel="STYLESHEET" type="text/css" href="codebase/dhtmlxtree.css">
+<script  src="codebase/dhtmlxcommon.js"></script>
+	<script  src="codebase/dhtmlxtree.js"></script>
+	<script>
+	
+		function fixImage(id){
+			switch(tree.getLevel(id)){
+			case 1:
+			tree.setItemImage2(id,'books_close.gif','tombs.gif','tombs.gif');
+				break;
+			case 2:
+			tree.setItemImage2(id,'book.gif','books_open.gif','books_close.gif');			
+				break;
+			case 3:
+			tree.setItemImage2(id,'book.gif','books_open.gif','book.gif');			
+				break;			
+			default:
+			tree.setItemImage2(id,'book_titel.gif','book_titel.gif','book_titel.gif');			
+				break;
+			}
+		}
+
+		
+	</script>
+
+	<script type="text/javascript">
+var P = window.parent, D = P.loadinndlg();
+	</script>
+</head>
+
+<body>
+ <div class="normalform">
+<div class="item">
+		                <label class="lab">广告名称：</label>
+	                海王生物医药广告
+ </div>
+<div class="item">
+		                <label class="lab">网页地址：</label>
+<a href="http://www.sina.com.cn" target="_blank">http://www.sina.com.cn</a>
+ </div>	
+ <div class="item">
+		                <label class="lab">网页快照：</label>
+<img src="images/QQ截图未命名.png" />
+ </div>	
+ <div class="item">
+		                <label class="lab">状态标识：</label>
+		                
+		                <select name="select" class="sel">
+		                  <option value="d1">正常</option>
+		                  <option value="d2">违法</option>
+                        </select>
+	                  <span class="c_red">&nbsp;*</span>
+	                  <span class="cues">（必填）</span>		            </div>   
+  <div class="item">
+		                <label class="lab">法律根据：</label>
+		                
+<div id="treeboxbox_tree" style="width:250px; height:100px;background-color:#f5f5f5;border :1px solid #ccc; overflow:auto;"></div>
+	            </div> 
+      
+		           	<div class="item">
+		                <label class="lab">判别说明：</label>
+		                
+<textarea name="rulecontent" cols="33" rows="5" class="textrea"></textarea>
+		            </div> 
+<div class="bott"><a href="#" class="btn_normal">完成判别</a></div>
+	<script>
+			tree=new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+			tree.setImagePath("codebase/imgs/csh_bluebooks/");
+                        tree.enableCheckBoxes(1);
+                        tree.enableThreeStateCheckboxes(true);
+			tree.loadXML("tree3.xml");
+
+</script>		    
+</div>
+</body>
+</html>
