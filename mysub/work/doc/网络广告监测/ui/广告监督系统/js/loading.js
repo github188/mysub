@@ -7,7 +7,6 @@ xmlHttp2 = new XMLHttpRequest();
 xmlHttp2 = new ActiveXObject("Microsoft.XMLHTTP");
 }
 } 
-　　//获取页面信息的蜩用函数
 function switchPage(pageName) {
 createXmlHttp2();
 writePageInfo(''
@@ -24,9 +23,7 @@ xmlHttp2.send(null);
 //xmlHttp2.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 //xmlHttp2.setRequestHeader("If-Modified-Since", "0");
 } 
-　　//获掫页面信息的回调函数
 function writePageInfo(pageInfo) {
-//如果没有传叺pageInfo参数，则读取xmlHttp对象哋姠应结果
 if (pageInfo == undefined) {
 if (xmlHttp2.readyState == 4) {
 var pageInfo = xmlHttp2.responseText;

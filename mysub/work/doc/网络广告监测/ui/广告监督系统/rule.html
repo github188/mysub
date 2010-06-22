@@ -7,6 +7,7 @@
 <link href="css/stylev4.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="stylesheet" type="text/css" href="css/css.css" media="all" />
 <script type="text/javascript" src="lhgdialog.js"></script>
+
 <link href="css/tab-menu.css" rel="stylesheet" type="text/css" />
 <link href="css/niceforms-default.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript"> 
@@ -63,20 +64,28 @@ function switchTag(tag,content)
 	              <div class="item">
 		                <label class="lab">规则类型：</label>
 		                
-		                <select name="select" class="sel">
+		                <select id="ruleType" name="select" class="sel" onChange="redirect(this.options.selectedIndex)">
 		                  <option value="d1">文字</option>
 		                  <option value="d2">图片</option>
-		                  <option value="d3">动画</option>
-		                  <option value="d4">影片</option>
-		                  <option value="d5">音频</option>
+		                  <option value="d3">视频</option>
+		                  <option value="d4">音频</option>
                         </select>
 	                  <span class="c_red">&nbsp;*</span>
 	                  <span class="cues">（必填）</span>		            </div>
 		           	<div class="item">
 		                <label class="lab">规则内容：</label>
-		                
-<textarea name="rulecontent" cols="21" rows="8" class="textrea"></textarea>
+		                 <select id="selectRule1" name="selectRule1" class="sel">
+		                  <option value="1" selected>包含</option>
+		                   <option value="2">不包含</option>
+                        </select>
+              
 	                  <span class="c_red">&nbsp;*</span>
+	                  <span class="cues">（必填）</span>		            </div> 
+	                  	 	<div class="item">
+		                
+		                 <input type="text" id="ruleText" name="ruleText" value="" class="tx_ipt">
+              
+	                  <span id="unitSpan" class="c_red">&nbsp;*</span>
 	                  <span class="cues">（必填）</span>		            </div> 
 		     <div class="item">
 		                <label class="lab">所属模块：</label>
@@ -286,5 +295,6 @@ function switchTag(tag,content)
 
 	      </form>
 	    </div>
+	    <script type="text/javascript" src="js/selectTree.js"></script>
 </body>
 </html>
